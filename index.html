@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masungulo Business Websites - Premium Web Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 40px;
+            text-align: center;
+            color: white;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(123, 47, 247, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(30px);
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(123, 47, 247, 0.4);
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1a1a2e 0%, #7b2ff7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .services {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(123, 47, 247, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .why-choose {
+            background: white;
+        }
+        
+        .why-choose-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .why-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, #00d4ff15 0%, #7b2ff715 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .why-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #00d4ff25 0%, #7b2ff725 100%);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+        
+        .why-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.8s ease-out;
+            overflow: hidden;
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(123, 47, 247, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .pricing-card:hover::before {
+            opacity: 1;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 30px 60px rgba(123, 47, 247, 0.2);
+        }
+        
+        .pricing-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-card h3 {
+            color: #1a1a2e;
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1.5rem 0;
+        }
+        
+        .price span {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .pricing-card li {
+            padding: 0.8rem 0;
+            color: #333;
+            font-weight: 500;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .pricing-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-card li::before {
+            content: '✓ ';
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .testimonials {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials h2 {
+            color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease-out;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: #00d4ff;
+        }
+        
+        .testimonial-title {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        
+        .about {
+            background: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-content div {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        .about-content div:nth-child(2) {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        .about h3 {
+            font-size: 2rem;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .about ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .about ul li {
+            padding: 0.8rem 0;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .about ul li::before {
+            content: '→';
+            color: #00d4ff;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .contact {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        
+        .contact-info {
+            margin: 3rem 0;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .contact-info p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .contact-info a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #7b2ff7;
+            text-decoration: underline;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        /* Floating WhatsApp Button */
+        .float-whatsapp {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 40px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 2rem;
+            line-height: 70px;
+            z-index: 999;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .float-whatsapp:hover {
+            background-color: #1fbd52;
+            transform: scale(1.15);
+            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.5);
+            animation: none;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero {
+                padding: 4rem 20px;
+                min-height: auto;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            section h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/27067710257?text=Hi,%20I%20want%20to%20know%20more%20about%20your%20services" target="_blank" class="float-whatsapp">💬</a>
+    
+    <header>
+        <nav>
+            <div class="logo">✨ Masungulo Websites</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why">Why Us</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Business Online</h1>
+            <p>Premium website solutions designed to elevate your brand and drive revenue growth</p>
+            <a href="#pricing" class="cta-button">Explore Our Plans</a>
+        </div>
+    </section>
+    
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Premium Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🎨 Website Design</h3>
+                    <p>Custom, award-winning website designs tailored to your business needs, brand identity, and target audience for maximum impact.</p>
+                </div>
+                <div class="service-card">
+                    <h3>📱 Responsive Layout</h3>
+                    <p>Beautifully designed websites that look flawless on all devices and screen sizes, ensuring seamless user experience everywhere.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🚀 SEO Optimization</h3>
+                    <p>Professional SEO integration to boost your online visibility, rank higher in search engines, and attract qualified visitors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="why" class="why-choose">
+        <div class="container">
+            <h2>Why Choose Masungulo Websites?</h2>
+            <div class="why-choose-grid">
+                <div class="why-card">
+                    <div class="why-icon">⭐</div>
+                    <h3>Expert Development</h3>
+                    <p>Years of experience building stunning, high-performing websites that drive real business results.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">💎</div>
+                    <h3>Premium Quality</h3>
+                    <p>Every pixel perfected. We deliver luxury design standards at affordable prices you'll love.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">⚡</div>
+                    <h3>Fast Turnaround</h3>
+                    <p>Get your professional website live quickly without compromising on quality or attention to detail.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🤝</div>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated support ensuring your website runs perfectly. We're always here when you need us.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">📈</div>
+                    <h3>Proven Results</h3>
+                    <p>Websites designed to convert visitors into customers with strategic layouts and CTAs.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🔒</div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Enterprise-grade security and reliable hosting to keep your website safe and always online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Premium Pricing Plans</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-card-content">
+                        <h3>Basic Website</h3>
+                        <div class="price">R500<span>/project</span></div>
+                        <ul>
+                            <li>Single Page Website</li>
+                            <li>Mobile Responsive</li>
+                            <li>3 Premium Sections</li>
+                            <li>Contact Form</li>
+                            <li>1 Round of Revisions</li>
+                        </ul>
+                        <a href="https://wa.me/27067710257?text=I%20want%20to%20get%20a%20Basic%20Website" target="_blank" class="cta-button">Get this Plan</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-content">
+                        <h3>Business Website</h3>
+                        <div class="price">R800<span>/project</span></div>
+                        <ul>
+                            <li>Multi-Page Website</li>
+                            <li>Mobile Responsive</li>
+                            <li>6+ Premium Sections</li>
+                            <li>Advanced Contact Form</li>
+                            <li>SEO Optimization</li>
+                            <li>3 Rounds of Revisions</li>
+                        </ul>
+                        <a href="https://wa.me/27067710257?text=I%20want%20to%20get%20a%20Business%20Website" target="_blank" class="cta-button">Get this Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Masungulo delivered an absolutely stunning website that exceeded all my expectations. Professional, responsive, and my sales increased within weeks!"</p>
+                    <p class="testimonial-author">Thabo Mthembu</p>
+                    <p class="testimonial-title">Clients, TechStart Solutions</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Best investment for my small business. The website looks premium, works perfectly on mobile, and their customer support is fantastic. Highly recommended!"</p>
+                    <p class="testimonial-author">Sarah Johnson</p>
+                    <p class="testimonial-title">cients, Sarah's Boutique</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The level of attention to detail and professionalism is exceptional. They understood my vision, delivered on time, and the site performs beautifully. Truly outstanding service!"</p>
+                    <p class="testimonial-author">Mpilo Dlamini</p>
+                    <p class="testimonial-title">clients, Digital Dreams Agency</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Ready to Launch Your Premium Website?</h2>
+            <div class="contact-info">
+                <p><strong>📧 Email:</strong> <a href="mailto:masungulongomani97@gmail.com">masungulongomani97@gmail.com</a></p>
+                <p><strong>📞 Phone:</strong> <a href="tel:+27067710257">+27 067 710 2574</a></p>
+                <p><strong>📍 Location:</strong> Mashamba 0942, Vhutibangoma</p>
+            </div>
+            <a href="https://wa.me/27067710257?text=Hi,%20I%20want%20to%20discuss%20my%20website%20project" target="_blank" class="cta-button">Start Your Project Today</a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2026 Masungulo Business Websites. All rights reserved.</p>
+        <p>Building premium digital experiences for South African businesses</p>
+    </footer>
+</body>
+</html>
