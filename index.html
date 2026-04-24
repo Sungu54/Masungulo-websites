@@ -5,25 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="JULO_TxgVNd8Zo4GaluMtn5R3d4KuF_UaWZMTe_8SKs" />
-    <title>Masungulo Websites - Premium Web Design for South African Businesses | Get Your Website Built Now</title>
-    <meta name="description" content="Transform your South African business online with Masungulo Websites. Custom premium web design from R500. Mobile-responsive, SEO-optimized sites that drive sales. 24/7 support. Get started today!">
+    <title>Masungulo Digital - Premium Web Design for South African Businesses | Get Your Website Built Now</title>
+    <meta name="description" content="Transform your South African business online with Masungulo Digital. Custom premium web design from R500. Mobile-responsive, SEO-optimized sites that drive sales. 24/7 support. Get started today!">
     <meta name="keywords" content="web design, website design South Africa, premium websites, business websites, web development, SEO optimization, responsive design, affordable websites">
-    <meta name="author" content="Masungulo Websites">
+    <meta name="author" content="Masungulo Digital">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#1a1a2e">
-    <meta property="og:title" content="Masungulo Websites - Premium Web Solutions for Your Business">
+    <meta property="og:title" content="Masungulo Digital - Premium Web Solutions for Your Business">
     <meta property="og:description" content="Get a professional, mobile-responsive website that drives real business results. Custom design from R500. Quick turnaround, 24/7 support.">
     <meta property="og:type" content="business.business">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Masungulo Websites - Premium Web Design">
+    <meta name="twitter:title" content="Masungulo Digital - Premium Web Design">
     <meta name="twitter:description" content="Transform your business online with stunning, SEO-optimized websites. Starting from R500.">
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "LocalBusiness",
-      "name": "Masungulo Websites",
-      "image": "https://example.com/logo.jpg",
+      "name": "Masungulo Digital",
+      "image": "https://sungu54.github.io/Masungulo-websites/logo.png",
       "description": "Premium web design and development services for South African businesses. We create custom, SEO-optimized websites that drive results.",
       "address": {
         "@type": "PostalAddress",
@@ -35,12 +35,15 @@
       "telephone": "+27067710257",
       "email": "masungulongomani97@gmail.com",
       "sameAs": [
-        "https://www.facebook.com/masungulo"
+        "https://www.facebook.com/",
+        "https://www.instagram.com/sungu_47",
+        "https://www.linkedin.com/",
+        "https://twitter.com/"
       ],
       "priceRange": "R500-R1000",
       "knowsAbout": ["Web Design", "Web Development", "SEO", "Responsive Design", "E-Commerce"],
       "areaServed": "ZA",
-      "serviceA rea": "South Africa"
+      "serviceArea": "South Africa"
     }
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6698385806932205"
@@ -142,6 +145,8 @@
         }
         
         .logo {
+            display: flex;
+            align-items: center;
             font-size: 1.6rem;
             font-weight: 900;
             background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
@@ -149,6 +154,14 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: -0.5px;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: auto;
+            margin-right: 0.85rem;
+            display: inline-block;
+            border-radius: 10px;
         }
         
         nav ul {
@@ -193,6 +206,21 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .page.hidden {
+            transform: rotateY(-180deg);
         }
         
         .hero::before {
@@ -928,34 +956,35 @@
     
     <header>
         <nav>
-            <div class="logo">✨ Masungulo Websites</div>
+            <div class="logo"><img src="https://sungu54.github.io/Masungulo-websites/logo.png" class="brand-logo"><span>✨ Masungulo Digital</span></div>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why">Why Us</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" onclick="showSection('home'); return false;">Home</a></li>
+                <li><a href="#about" onclick="showSection('about'); return false;">About</a></li>
+                <li><a href="#services" onclick="showSection('services'); return false;">Services</a></li>
+                <li><a href="#articles" onclick="showSection('articles'); return false;">Articles</a></li>
+                <li><a href="#why" onclick="showSection('why'); return false;">Why Us</a></li>
+                <li><a href="#pricing" onclick="showSection('pricing'); return false;">Pricing</a></li>
+                <li><a href="#testimonials" onclick="showSection('testimonials'); return false;">Testimonials</a></li>
+                <li><a href="#contact" onclick="showSection('contact'); return false;">Contact</a></li>
             </ul>
         </nav>
     </header>
     
-    <section id="home" class="hero">
+    <section id="home" class="page hero active">
         <div class="hero-content">
             <h1>Get a Professional Website That Actually Sells</h1>
             <p>Hi! I'm Masungulo, a web designer creating stunning, mobile-responsive websites that turn visitors into customers. Premium designs from just R500. Let's grow your business online.</p>
-            <a href="#pricing" class="cta-button">Start Your Website Today</a>
+            <a href="#pricing" onclick="showSection('pricing'); return false;" class="cta-button">Start Your Website Today</a>
         </div>
     </section>
     
-    <section id="about" class="about">
+    <section id="about" class="page about">
         <div class="container">
-            <h2>About Masungulo Websites</h2>
+            <h2>About Masungulo Digital</h2>
             <div class="about-content">
                 <div>
                     <h3>Who We Are</h3>
-                    <p>I'm Masungulo, a passionate web designer and developer based in South Africa. For years, I've watched small and medium businesses struggle with outdated websites or expensive development costs. I built Masungulo Websites to change that.</p>
+                    <p>I'm Masungulo, a passionate web designer and developer based in South Africa. For years, I've watched small and medium businesses struggle with outdated websites or expensive development costs. I built Masungulo Digital to change that.</p>
                     <p>My mission is simple: provide premium, professional web design at prices that actually make sense for South African businesses. Every website I create is built to perform—stunning aesthetics combined with conversion-focused design.</p>
                 </div>
                 <div>
@@ -973,7 +1002,7 @@
         </div>
     </section>
 
-    <section id="services" class="services">
+    <section id="services" class="page services">
         <div class="container">
             <h2>What I Do - Premium Web Services</h2>
             <div class="services-grid">
@@ -1004,8 +1033,28 @@
             </div>
         </div>
     </section>
+
+    <section id="articles" class="page services">
+      <div class="container">
+        <h2>Latest Articles</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Why Every Business Needs a Website in 2026</h3>
+            <p>A professional website helps you reach more customers, build trust, and increase sales online...</p>
+          </div>
+          <div class="service-card">
+            <h3>How a Website Can Grow Your Small Business</h3>
+            <p>With the rise of digital marketing, having a website is no longer optional...</p>
+          </div>
+          <div class="service-card">
+            <h3>Top 5 Benefits of Having a Mobile-Friendly Website</h3>
+            <p>More than 60% of users browse on mobile devices...</p>
+          </div>
+        </div>
+      </div>
+    </section>
     
-    <section id="why" class="why-choose">
+    <section id="why" class="page why-choose">
         <div class="container">
             <h2>Why Choose Masungulo? Here's What Sets Me Apart</h2>
             <div class="why-choose-grid">
@@ -1037,13 +1086,13 @@
                 <div class="why-card">
                     <div class="why-icon">✅</div>
                     <h3>Proven Winning Formula</h3>
-                    <p>Hundreds of South African businesses are already using their Masungulo websites to grow. Check our testimonials. Real clients, real results, real growth.</p>
+                    <p>Hundreds of South African businesses are already using Masungulo Digital to grow. Check our testimonials. Real clients, real results, real growth.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="pricing" class="pricing">
+    <section id="pricing" class="page pricing">
         <div class="container">
             <h2>Simple, Transparent Pricing - No Hidden Costs</h2>
             <div class="pricing-grid">
@@ -1084,7 +1133,7 @@
         </div>
     </section>
     
-    <section id="testimonials" class="testimonials">
+    <section id="testimonials" class="page testimonials">
         <div class="container">
             <h2>What Our Clients Say</h2>
             <div class="testimonials-grid">
@@ -1110,7 +1159,7 @@
         </div>
     </section>
     
-    <section id="contact" class="contact">
+    <section id="contact" class="page contact">
         <div class="container">
             <h2>Let's Create Something Amazing</h2>
             <p style="text-align: center; color: #333; font-size: 1.1rem; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto;">Ready to launch your professional website? Get in touch now for a free consultation. I'll help you bring your vision to life.</p>
@@ -1137,10 +1186,10 @@
             <div class="social-links">
                 <h4>Follow Me</h4>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/Story Channel" target="_blank" title="Facebook" class="social-icon">f</a>
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook" class="social-icon">f</a>
                     <a href="https://www.instagram.com/sungu_47" target="_blank" title="Instagram" class="social-icon">📷</a>
-                    <a href="https://www.linkedin.com/in/Masungulo Ngomani" target="_blank" title="LinkedIn" class="social-icon">in</a>
-                    <a href="https://www.twitter.com/sunguN27" target="_blank" title="Twitter" class="social-icon">𝕏</a>
+                    <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn" class="social-icon">in</a>
+                    <a href="https://twitter.com/" target="_blank" title="Twitter" class="social-icon">𝕏</a>
                 </div>
             </div>
             
@@ -1151,7 +1200,7 @@
     </section>
     
     <footer>
-        <p>&copy; 2026 Masungulo Websites. All rights reserved.</p>
+        <p>&copy; 2026 Masungulo Digital. All rights reserved.</p>
         <p>Premium Web Design & Development for South African Businesses | <a href="mailto:masungulongomani97@gmail.com" style="color: #60a5fa; text-decoration: none;">masungulongomani97@gmail.com</a> | <a href="tel:+27067710257" style="color: #60a5fa; text-decoration: none;">+27 067 710 2574</a></p>
         <p>Crafting stunning websites that drive real business growth. Let's build your digital presence together.</p>
     </footer>
@@ -1231,28 +1280,18 @@
             observer.observe(section);
         });
 
-        // Smooth click navigation with fade effect
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    e.preventDefault();
-                    // Add smooth scroll with transition effect
-                    targetSection.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start'
-                    });
-                    
-                    // Update active nav link
-                    document.querySelectorAll('nav a').forEach(navLink => {
-                        navLink.style.opacity = '0.7';
-                    });
-                    link.style.opacity = '1';
-                }
+        // Section switching navigation
+        function showSection(sectionId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
             });
-        });
+
+            const activePage = document.getElementById(sectionId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+        }
 
         // Mobile menu smooth transitions
         window.addEventListener('load', () => {
