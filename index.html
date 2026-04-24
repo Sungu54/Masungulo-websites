@@ -120,6 +120,8 @@
             background: #ffffff;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -133,15 +135,19 @@
             z-index: 100;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
+            width: 100%;
+            box-sizing: border-box;
         }
         
         nav {
-            max-width: 1200px;
+            max-width: 100%;
+            width: 100%;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 40px;
+            box-sizing: border-box;
         }
         
         .logo {
@@ -317,6 +323,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 40px;
+            box-sizing: border-box;
+            width: 100%;
         }
         
         section {
@@ -324,6 +332,9 @@
             position: relative;
             animation: slideInUp 0.8s ease-out;
             will-change: transform;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
         @keyframes slideInUp {
@@ -813,10 +824,14 @@
 
             body {
                 overflow-x: hidden;
+                width: 100%;
+                max-width: 100%;
             }
             
             nav {
-                padding: 0 20px;
+                padding: 0 16px;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             nav ul {
@@ -845,6 +860,8 @@
             
             .container {
                 padding: 0 16px;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             section {
