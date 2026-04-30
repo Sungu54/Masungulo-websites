@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>SA Student Hub - Professional News Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f0f23; --secondary: #1a1a2e; --accent: #e94560; --accent-hover: #c73e54;
+            --accent-light: #ffe0e6; --success: #00b894; --warning: #fdcb6e; --info: #0984e3;
+            --bg: #f8f9fa; --card-bg: #ffffff; --text-primary: #0f0f23; --text-secondary: #5a5a72;
+            --text-muted: #8e8ea0; --border: #e8e8ed;
+            --shadow-sm: 0 1px 3px rgba(15,15,35,0.06); --shadow-md: 0 4px 16px rgba(15,15,35,0.08);
+            --shadow-lg: 0 12px 40px rgba(15,15,35,0.12); --shadow-xl: 0 20px 60px rgba(15,15,35,0.16);
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        .header { background: var(--card-bg); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); transition: var(--transition); }
+        .header.scrolled { box-shadow: var(--shadow-md); }
+        .header-top { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; max-width: 1400px; margin: 0 auto; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--accent), #ff6b6b); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 18px; box-shadow: 0 2px 12px rgba(233,69,96,0.35); }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--accent); }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+
+        .btn { padding: 10px 22px; border-radius: 24px; font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); border: none; outline: none; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+        .btn-outline { background: transparent; color: var(--text-primary); border: 2px solid var(--border); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+        .btn-primary { background: var(--accent); color: white; box-shadow: 0 2px 12px rgba(233,69,96,0.35); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(233,69,96,0.45); }
+        .btn-ghost { background: transparent; color: var(--text-secondary); }
+        .btn-ghost:hover { background: var(--bg); color: var(--accent); }
+        .btn-lg { padding: 14px 32px; font-size: 16px; }
+        .btn-block { width: 100%; justify-content: center; }
+        .btn-danger { background: #ff4757; color: white; } .btn-danger:hover { background: #ee3742; }
+        .btn-success { background: var(--success); color: white; } .btn-success:hover { background: #00a383; }
+        .btn-info { background: var(--info); color: white; } .btn-info:hover { background: #0770c2; }
+        .icon-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; color: var(--text-secondary); transition: var(--transition); }
+        .icon-btn:hover { background: var(--bg); color: var(--accent); }
+        .icon-btn.active { color: var(--accent); background: var(--accent-light); }
+
+        .category-nav { background: var(--card-bg); border-top: 1px solid var(--border); position: sticky; top: 66px; z-index: 999; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+        .category-nav::-webkit-scrollbar { display: none; }
+        .category-list { display: flex; gap: 4px; padding: 10px 16px; max-width: 1400px; margin: 0 auto; min-width: max-content; }
+        .category-tab { padding: 10px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text-secondary); background: transparent; border: none; cursor: pointer; white-space: nowrap; transition: var(--transition); position: relative; }
+        .category-tab:hover { color: var(--accent); background: rgba(233,69,96,0.06); }
+        .category-tab.active { color: var(--accent); background: rgba(233,69,96,0.1); }
+        .category-tab.active::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; background: var(--accent); border-radius: 2px; }
+
+        .ad-banner { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 16px; text-align: center; font-size: 13px; font-weight: 500; position: relative; overflow: hidden; cursor: pointer; }
+        .ad-banner::before { content: 'AD'; position: absolute; top: 6px; right: 10px; font-size: 10px; opacity: 0.6; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px 16px; }
+        @media (min-width: 768px) { .container { padding: 24px; } }
+
+        .skeleton { background: linear-gradient(90deg, var(--border) 25%, #f5f5f7 50%, var(--border) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: var(--radius-sm); }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .loading-spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 40px auto; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 12px; }
+
+        .featured-section { margin-bottom: 32px; }
+        .featured-card { background: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; position: relative; }
+        .featured-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .featured-image { width: 100%; height: 300px; position: relative; overflow: hidden; }
+        .featured-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .featured-card:hover .featured-image img { transform: scale(1.03); }
+        .featured-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,15,35,0.9) 0%, rgba(15,15,35,0.4) 60%, transparent 100%); padding: 60px 24px 24px; color: white; }
+        .featured-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+        .category-badge { padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; }
+        .badge-education { background: var(--success); color: white; }
+        .badge-opportunities { background: var(--warning); color: var(--primary); }
+        .badge-politics { background: var(--accent); color: white; }
+        .badge-lifestyle { background: #74b9ff; color: white; }
+        .badge-jobs { background: var(--info); color: white; }
+        .badge-internships { background: #a29bfe; color: white; }
+        .timestamp { font-size: 13px; opacity: 0.9; display: flex; align-items: center; gap: 6px; }
+        .featured-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; line-height: 1.25; margin-bottom: 10px; }
+        .featured-excerpt { font-size: 15px; opacity: 0.85; line-height: 1.6; max-width: 700px; }
+        @media (min-width: 768px) { .featured-image { height: 420px; } .featured-title { font-size: 36px; } }
+
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+        .section-title { font-size: 22px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .trending-indicator { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 13px; font-weight: 700; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .view-all { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 4px; }
+        .view-all:hover { text-decoration: underline; }
+
+        .articles-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+        @media (min-width: 640px) { .articles-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .articles-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1280px) { .articles-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .article-card { background: var(--card-bg); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; display: flex; flex-direction: column; height: 100%; }
+        .article-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .article-image { width: 100%; height: 200px; position: relative; overflow: hidden; }
+        .article-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .article-card:hover .article-image img { transform: scale(1.05); }
+        .article-image .category-badge { position: absolute; top: 12px; left: 12px; z-index: 2; }
+        .article-content { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+        .article-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .article-source { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
+        .article-title { font-size: 17px; font-weight: 800; line-height: 1.35; margin-bottom: 10px; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .article-excerpt { font-size: 14px; color: var(--text-secondary); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
+        .article-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+        .read-time { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; font-weight: 500; }
+        .save-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); transition: var(--transition); padding: 6px; border-radius: 50%; }
+        .save-btn:hover, .save-btn.saved { color: var(--accent); background: var(--accent-light); }
+        .article-type-indicator { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+
+        .affiliate-banner { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: var(--radius-md); padding: 24px; margin-bottom: 32px; color: white; position: relative; overflow: hidden; cursor: pointer; }
+        .affiliate-banner::before { content: ''; position: absolute; top: -50%; right: -20%; width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .affiliate-content { position: relative; z-index: 1; }
+        .affiliate-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9; margin-bottom: 10px; }
+        .affiliate-title { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+        .affiliate-link { display: inline-flex; align-items: center; gap: 6px; color: white; font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+
+        .search-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15,15,35,0.85); backdrop-filter: blur(12px); z-index: 2000; display: none; align-items: flex-start; justify-content: center; padding-top: 80px; opacity: 0; transition: opacity 0.3s ease; }
+        .search-overlay.active { display: flex; opacity: 1; }
+        .search-container { width: 92%; max-width: 700px; background: var(--card-bg); border-radius: var(--radius-xl); padding: 28px; transform: translateY(-20px); transition: transform 0.3s ease; box-shadow: var(--shadow-xl); }
+        .search-overlay.active .search-container { transform: translateY(0); }
+        .search-input-wrapper { display: flex; align-items: center; gap: 14px; background: var(--bg); border-radius: var(--radius-lg); padding: 14px 20px; margin-bottom: 24px; border: 2px solid transparent; transition: var(--transition); }
+        .search-input-wrapper:focus-within { border-color: var(--accent); background: white; }
+        .search-input { flex: 1; border: none; background: none; font-size: 17px; font-family: inherit; outline: none; color: var(--text-primary); }
+        .search-input::placeholder { color: var(--text-muted); }
+        .search-suggestions-title { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .search-suggestions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+        .suggestion-chip { padding: 8px 18px; background: var(--bg); border-radius: 20px; font-size: 14px; color: var(--text-secondary); cursor: pointer; transition: var(--transition); border: none; font-weight: 500; }
+        .suggestion-chip:hover { background: var(--accent); color: white; transform: translateY(-2px); }
+        .search-results { max-height: 400px; overflow-y: auto; }
+        .search-result-item { padding: 14px; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); display: flex; gap: 14px; align-items: center; }
+        .search-result-item:hover { background: var(--bg); }
+        .search-result-img { width: 60px; height: 60px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; }
+        .search-result-title { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+        .search-result-meta { font-size: 12px; color: var(--text-muted); }
+
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg); border-top: 1px solid var(--border); padding: 8px 0 16px; z-index: 1000; box-shadow: 0 -4px 20px rgba(15,15,35,0.06); }
+        .bottom-nav-list { display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto; }
+        .bottom-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 12px; color: var(--text-muted); text-decoration: none; font-size: 11px; font-weight: 600; transition: var(--transition); border: none; background: none; cursor: pointer; }
+        .bottom-nav-item.active { color: var(--accent); }
+        .bottom-nav-item svg { width: 24px; height: 24px; stroke-width: 2; }
+        .bottom-nav-item.discover { position: relative; top: -20px; }
+        .discover-btn { width: 58px; height: 58px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 6px 20px rgba(233,69,96,0.4); border: 4px solid var(--bg); transition: var(--transition); }
+        .discover-btn:hover { transform: scale(1.1) rotate(90deg); }
+
+        .lang-switcher { position: relative; }
+        .lang-dropdown { position: absolute; top: calc(100% + 10px); right: 0; background: var(--card-bg); border-radius: var(--radius-md); box-shadow: var(--shadow-xl); padding: 10px; min-width: 160px; display: none; opacity: 0; transform: translateY(-10px); transition: all 0.2s ease; z-index: 100; }
+        .lang-dropdown.show { display: block; opacity: 1; transform: translateY(0); }
+        .lang-option { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 14px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .lang-option:hover { background: var(--bg); }
+        .lang-option.active { color: var(--accent); font-weight: 700; background: var(--accent-light); }
+
+        .scroll-top { position: fixed; bottom: 100px; right: 20px; width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transform: translateY(20px); transition: var(--transition); box-shadow: var(--shadow-md); border: none; z-index: 100; }
+        .scroll-top.visible { opacity: 1; transform: translateY(0); }
+        .scroll-top:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15,15,35,0.7); backdrop-filter: blur(8px); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal { background: var(--card-bg); border-radius: var(--radius-xl); width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.3s ease; box-shadow: var(--shadow-xl); }
+        .modal-overlay.active .modal { transform: scale(1); }
+        .modal-header { padding: 24px 28px 0; display: flex; align-items: center; justify-content: space-between; }
+        .modal-title { font-size: 22px; font-weight: 800; }
+        .modal-close { width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--bg); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: var(--transition); }
+        .modal-close:hover { background: var(--accent-light); color: var(--accent); }
+        .modal-body { padding: 20px 28px 28px; }
+        .modal-footer { padding: 0 28px 24px; display: flex; gap: 12px; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+        .form-input, .form-textarea, .form-select { width: 100%; padding: 14px 18px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 15px; font-family: inherit; transition: var(--transition); background: var(--bg); color: var(--text-primary); }
+        .form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); background: white; box-shadow: 0 0 0 4px rgba(233,69,96,0.1); }
+        .form-textarea { min-height: 120px; resize: vertical; }
+        .form-select { cursor: pointer; }
+        .form-hint { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+        .form-error { font-size: 13px; color: #ff4757; margin-top: 6px; display: none; }
+        .form-error.show { display: block; }
+
+        .auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+        .auth-card { background: var(--card-bg); border-radius: var(--radius-xl); padding: 40px; width: 100%; max-width: 480px; box-shadow: var(--shadow-xl); }
+        .auth-logo { text-align: center; margin-bottom: 32px; }
+        .auth-logo .logo { justify-content: center; }
+        .auth-title { font-size: 28px; font-weight: 900; text-align: center; margin-bottom: 8px; }
+        .auth-subtitle { text-align: center; color: var(--text-secondary); margin-bottom: 32px; font-size: 15px; }
+        .auth-footer { text-align: center; margin-top: 24px; font-size: 14px; color: var(--text-secondary); }
+        .auth-footer a { color: var(--accent); font-weight: 600; text-decoration: none; }
+        .auth-footer a:hover { text-decoration: underline; }
+        .social-login { display: flex; gap: 12px; margin-bottom: 24px; }
+        .social-btn { flex: 1; padding: 12px; border: 2px solid var(--border); border-radius: var(--radius-md); background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; font-size: 14px; transition: var(--transition); }
+        .social-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+        .divider { display: flex; align-items: center; gap: 16px; margin: 24px 0; color: var(--text-muted); font-size: 13px; font-weight: 500; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        .admin-layout { display: flex; min-height: 100vh; }
+        .admin-sidebar { width: 260px; background: var(--primary); color: white; position: fixed; height: 100vh; overflow-y: auto; z-index: 100; }
+        .admin-sidebar-header { padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .admin-sidebar-header .logo-text { color: white; font-size: 22px; }
+        .admin-nav { padding: 16px 12px; }
+        .admin-nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: var(--radius-md); color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 600; transition: var(--transition); cursor: pointer; border: none; background: none; width: 100%; }
+        .admin-nav-item:hover, .admin-nav-item.active { background: rgba(255,255,255,0.1); color: white; }
+        .admin-nav-item svg { width: 20px; height: 20px; }
+        .admin-main { flex: 1; margin-left: 260px; background: var(--bg); min-height: 100vh; }
+        .admin-header { background: var(--card-bg); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
+        .admin-content { padding: 32px; max-width: 1200px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 20px; margin-bottom: 32px; }
+        @media (min-width: 640px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+        .stat-card { background: var(--card-bg); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm); }
+        .stat-label { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .stat-value { font-size: 32px; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
+        .stat-change { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+        .stat-change.positive { color: var(--success); }
+        .stat-change.negative { color: var(--accent); }
+        .admin-table { width: 100%; background: var(--card-bg); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+        .admin-table table { width: 100%; border-collapse: collapse; }
+        .admin-table th { padding: 16px 20px; text-align: left; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); background: var(--bg); border-bottom: 1px solid var(--border); }
+        .admin-table td { padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 14px; }
+        .admin-table tr:hover td { background: var(--bg); }
+        .admin-table tr:last-child td { border-bottom: none; }
+        .table-actions { display: flex; gap: 8px; }
+        .table-btn { padding: 6px 12px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); }
+        .table-btn-edit { background: var(--info); color: white; } .table-btn-edit:hover { background: #0770c2; }
+        .table-btn-delete { background: #ff4757; color: white; } .table-btn-delete:hover { background: #ee3742; }
+        .status-badge { padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; }
+        .status-published { background: rgba(0,184,148,0.15); color: var(--success); }
+        .status-draft { background: rgba(253,203,110,0.2); color: #d4a017; }
+
+        .article-detail { background: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 32px; }
+        .article-detail-header { position: relative; }
+        .article-detail-image { width: 100%; height: 350px; object-fit: cover; }
+        .article-detail-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,15,35,0.9), transparent); padding: 60px 32px 32px; color: white; }
+        .article-detail-body { padding: 32px; max-width: 800px; margin: 0 auto; }
+        .article-detail-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 20px; color: var(--primary); }
+        .article-detail-meta { display: flex; align-items: center; gap: 20px; margin-bottom: 32px; flex-wrap: wrap; }
+        .article-detail-content { font-size: 17px; line-height: 1.8; color: var(--text-secondary); }
+        .article-detail-content p { margin-bottom: 20px; }
+        .article-detail-content h2 { font-size: 24px; font-weight: 800; color: var(--primary); margin: 32px 0 16px; }
+        .article-detail-content h3 { font-size: 20px; font-weight: 700; color: var(--primary); margin: 24px 0 12px; }
+        .article-detail-content ul, .article-detail-content ol { margin-bottom: 20px; padding-left: 24px; }
+        .article-detail-content li { margin-bottom: 8px; }
+        .article-detail-content blockquote { border-left: 4px solid var(--accent); padding-left: 20px; margin: 24px 0; font-style: italic; color: var(--text-secondary); }
+        .article-detail-content img { width: 100%; border-radius: var(--radius-md); margin: 24px 0; }
+        .article-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+        .article-tag { padding: 8px 16px; background: var(--bg); border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: var(--transition); }
+        .article-tag:hover { background: var(--accent); color: white; }
+        .share-buttons { display: flex; gap: 12px; margin-top: 24px; }
+        .share-btn { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--border); background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); color: var(--text-secondary); }
+        .share-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+        .subscription-page { padding: 40px 16px; max-width: 1200px; margin: 0 auto; }
+        .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 40px; }
+        @media (min-width: 768px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
+        .pricing-card { background: var(--card-bg); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-md); transition: var(--transition); position: relative; border: 2px solid transparent; }
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .pricing-card.popular { border-color: var(--accent); }
+        .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .pricing-name { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+        .pricing-price { font-size: 48px; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
+        .pricing-price span { font-size: 16px; font-weight: 500; color: var(--text-muted); }
+        .pricing-desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 24px; }
+        .pricing-features { list-style: none; margin-bottom: 32px; }
+        .pricing-features li { display: flex; align-items: center; gap: 10px; padding: 10px 0; font-size: 14px; color: var(--text-secondary); border-bottom: 1px solid var(--border); }
+        .pricing-features li:last-child { border-bottom: none; }
+        .pricing-features li svg { color: var(--success); flex-shrink: 0; }
+
+        .payment-methods { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .payment-method { display: flex; align-items: center; gap: 16px; padding: 16px; border: 2px solid var(--border); border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); }
+        .payment-method:hover { border-color: var(--accent); background: var(--accent-light); }
+        .payment-method.selected { border-color: var(--accent); background: var(--accent-light); }
+        .payment-method-icon { width: 48px; height: 48px; border-radius: var(--radius-sm); background: white; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: var(--shadow-sm); }
+        .payment-method-info { flex: 1; }
+        .payment-method-name { font-weight: 700; font-size: 15px; }
+        .payment-method-desc { font-size: 13px; color: var(--text-muted); }
+
+        .toast-container { position: fixed; top: 20px; right: 20px; z-index: 5000; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--card-bg); border-radius: var(--radius-md); padding: 16px 20px; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 12px; min-width: 300px; max-width: 400px; transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-left: 4px solid var(--accent); }
+        .toast.show { transform: translateX(0); }
+        .toast-success { border-left-color: var(--success); }
+        .toast-error { border-left-color: #ff4757; }
+        .toast-info { border-left-color: var(--info); }
+        .toast-icon { width: 24px; height: 24px; flex-shrink: 0; }
+        .toast-content { flex: 1; }
+        .toast-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+        .toast-message { font-size: 13px; color: var(--text-secondary); }
+        .toast-close { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; }
+
+        .footer { background: var(--primary); color: white; padding: 60px 16px 120px; margin-top: 60px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; }
+        .footer-brand { margin-bottom: 32px; }
+        .footer-brand .logo-text { color: white; font-size: 32px; }
+        .footer-tagline { color: rgba(255,255,255,0.7); font-size: 15px; margin-top: 10px; max-width: 400px; }
+        .footer-founder { background: rgba(255,255,255,0.08); padding: 20px; border-radius: var(--radius-md); margin: 28px 0; border-left: 4px solid var(--accent); }
+        .footer-founder-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.5); margin-bottom: 6px; font-weight: 600; }
+        .footer-founder-name { font-size: 20px; font-weight: 800; color: white; }
+        .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-bottom: 40px; }
+        @media (min-width: 768px) { .footer-links { grid-template-columns: repeat(4, 1fr); } }
+        .footer-column h4 { font-size: 14px; font-weight: 800; margin-bottom: 16px; color: rgba(255,255,255,0.9); text-transform: uppercase; letter-spacing: 1px; }
+        .footer-column a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; padding: 6px 0; transition: var(--transition); }
+        .footer-column a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeInUp 0.6s ease forwards; }
+
+        @media (max-width: 768px) {
+            .admin-sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .admin-sidebar.open { transform: translateX(0); }
+            .admin-main { margin-left: 0; }
+            .auth-card { padding: 28px 20px; }
+            .article-detail-title { font-size: 24px; }
+            .article-detail-body { padding: 20px; }
+            .header-actions .btn-outline { display: none; }
+            .header-actions .btn-primary { display: inline-flex; padding: 8px 16px; font-size: 13px; }
+        }
+
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 16px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mt-4 { margin-top: 16px; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 8px; }
+        .gap-4 { gap: 16px; }
+        .w-full { width: 100%; }
+        .text-sm { font-size: 14px; }
+        .text-lg { font-size: 18px; }
+        .font-bold { font-weight: 700; }
+        .text-accent { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- HOME PAGE -->
+    <div id="homePage">
+        <header class="header" id="header">
+            <div class="header-top">
+                <a href="#" class="logo" onclick="app.goHome(); return false;">
+                    <div class="logo-icon">SA</div>
+                    <div class="logo-text">Student <span>Hub</span></div>
+                </a>
+                <div class="header-actions">
+                    <div class="lang-switcher">
+                        <button class="icon-btn" id="langBtn" aria-label="Change language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </button>
+                        <div class="lang-dropdown" id="langDropdown">
+                            <div class="lang-option active" data-lang="en" onclick="app.switchLang('en')">🇿🇦 English</div>
+                            <div class="lang-option" data-lang="zu" onclick="app.switchLang('zu')">🇿🇦 isiZulu</div>
+                        </div>
+                    </div>
+                    <button class="icon-btn" id="searchBtn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    </button>
+                    <button class="btn btn-outline" onclick="app.showAuth('signin')">Sign in</button>
+                    <button class="btn btn-primary" onclick="app.showSubscription()">Subscribe</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="category-nav">
+            <div class="category-list">
+                <button class="category-tab active" data-category="all" onclick="app.filterCategory('all')">All News</button>
+                <button class="category-tab" data-category="top-stories" onclick="app.filterCategory('top-stories')">Top Stories</button>
+                <button class="category-tab" data-category="student-news" onclick="app.filterCategory('student-news')">Student News</button>
+                <button class="category-tab" data-category="bursaries" onclick="app.filterCategory('bursaries')">Bursaries</button>
+                <button class="category-tab" data-category="jobs" onclick="app.filterCategory('jobs')">Jobs</button>
+                <button class="category-tab" data-category="internships" onclick="app.filterCategory('internships')">Internships</button>
+                <button class="category-tab" data-category="lifestyle" onclick="app.filterCategory('lifestyle')">Lifestyle</button>
+            </div>
+        </nav>
+
+        <div class="ad-banner" onclick="window.open('https://www.nsfas.org.za', '_blank')">
+            <strong>NSFAS Applications 2026</strong> now open! Apply before 31 January • <span style="text-decoration: underline; font-weight: 700;">Learn More →</span>
+        </div>
+
+        <main class="container">
+            <section class="featured-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent);"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Live News Feed
+                    </h2>
+                    <button class="btn btn-ghost" onclick="app.refreshNews()" style="font-size: 13px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 16h5v5"></path></svg>
+                        Refresh
+                    </button>
+                </div>
+                <div id="apiNewsContainer">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">Fetching latest South African student news...</p>
+                </div>
+            </section>
+
+            <div class="affiliate-banner" onclick="window.open('https://paystack.com', '_blank')">
+                <div class="affiliate-content">
+                    <div class="affiliate-label">Sponsored</div>
+                    <div class="affiliate-title">Get 50% off your first month at EduCloud</div>
+                    <span class="affiliate-link">Claim your student discount <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                </div>
+            </div>
+
+            <section class="trending-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent);"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                        Editor's Picks
+                    </h2>
+                    <span class="trending-indicator">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        LIVE
+                    </span>
+                </div>
+                <div class="articles-grid" id="manualArticlesGrid"></div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-text">Student <span>Hub</span></div>
+                    <p class="footer-tagline">Trusted news, opportunities, and resources for South African students.</p>
+                </div>
+                <div class="footer-founder">
+                    <div class="footer-founder-label">Founded by</div>
+                    <div class="footer-founder-name">Ngomani Masungulo</div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Categories</h4>
+                        <a href="#" onclick="app.filterCategory('top-stories'); return false;">Top Stories</a>
+                        <a href="#" onclick="app.filterCategory('student-news'); return false;">Student News</a>
+                        <a href="#" onclick="app.filterCategory('bursaries'); return false;">Bursaries</a>
+                        <a href="#" onclick="app.filterCategory('jobs'); return false;">Jobs & Internships</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#" onclick="app.showAuth('signin'); return false;">Sign In</a>
+                        <a href="#" onclick="app.showSubscription(); return false;">Subscribe</a>
+                        <a href="#" onclick="app.showAdmin(); return false;">Admin Dashboard</a>
+                        <a href="#" onclick="app.showContact(); return false;">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="https://twitter.com" target="_blank">Twitter / X</a>
+                        <a href="https://instagram.com" target="_blank">Instagram</a>
+                        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                        <a href="https://tiktok.com" target="_blank">TikTok</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 SA Student Hub. All rights reserved. | Made with ❤️ for South African students.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+  
+    <!-- ARTICLE DETAIL PAGE -->
+    <div id="articlePage" class="hidden">
+        <header class="header">
+            <div class="header-top">
+                <a href="#" class="logo" onclick="app.goHome(); return false;">
+                    <div class="logo-icon">SA</div>
+                    <div class="logo-text">Student <span>Hub</span></div>
+                </a>
+                <div class="header-actions">
+                    <button class="icon-btn" onclick="app.goHome()" aria-label="Back">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+                    </button>
+                    <button class="icon-btn" onclick="app.shareArticle()" aria-label="Share">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                    </button>
+                    <button class="icon-btn" onclick="app.saveCurrentArticle()" aria-label="Save">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <div id="articleDetailContent"></div>
+    </div>
+
+    <!-- AUTH PAGES -->
+    <div id="authPage" class="hidden">
+        <div class="auth-page">
+            <div class="auth-card">
+                <div class="auth-logo">
+                    <a href="#" class="logo" onclick="app.goHome(); return false;">
+                        <div class="logo-icon">SA</div>
+                        <div class="logo-text">Student <span>Hub</span></div>
+                    </a>
+                </div>
+                <div id="authContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBSCRIPTION PAGE -->
+    <div id="subscriptionPage" class="hidden">
+        <header class="header">
+            <div class="header-top">
+                <a href="#" class="logo" onclick="app.goHome(); return false;">
+                    <div class="logo-icon">SA</div>
+                    <div class="logo-text">Student <span>Hub</span></div>
+                </a>
+                <button class="icon-btn" onclick="app.goHome()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+                </button>
+            </div>
+        </header>
+        <div class="subscription-page">
+            <div class="text-center mb-6">
+                <h1 class="auth-title">Choose Your Plan</h1>
+                <p class="auth-subtitle">Unlock premium content and exclusive student opportunities</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Free</div>
+                    <div class="pricing-price">R0<span>/month</span></div>
+                    <div class="pricing-desc">Basic access to news and updates</div>
+                    <ul class="pricing-features">
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Access to free articles</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Weekly newsletter</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Basic job alerts</li>
+                    </ul>
+                    <button class="btn btn-outline btn-block btn-lg" onclick="app.goHome()">Get Started</button>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-name">Student Pro</div>
+                    <div class="pricing-price">R49<span>/month</span></div>
+                    <div class="pricing-desc">Full access to all premium content</div>
+                    <ul class="pricing-features">
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Unlimited article access</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Exclusive bursary alerts</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Priority job applications</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Ad-free experience</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block btn-lg" onclick="app.showPayment('pro')">Subscribe Now</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">Student Premium</div>
+                    <div class="pricing-price">R99<span>/month</span></div>
+                    <div class="pricing-desc">Everything in Pro plus mentorship</div>
+                    <ul class="pricing-features">
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> All Pro features</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 1-on-1 career mentorship</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> CV review service</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Exclusive webinars</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block btn-lg" onclick="app.showPayment('premium')">Subscribe Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="adminPage" class="hidden">
+        <div class="admin-layout">
+            <aside class="admin-sidebar" id="adminSidebar">
+                <div class="admin-sidebar-header">
+                    <a href="#" class="logo" onclick="app.goHome(); return false;">
+                        <div class="logo-icon">SA</div>
+                        <div class="logo-text">Student <span>Hub</span></div>
+                    </a>
+                </div>
+                <nav class="admin-nav">
+                    <button class="admin-nav-item active" onclick="app.showAdminSection('dashboard')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                        Dashboard
+                    </button>
+                    <button class="admin-nav-item" onclick="app.showAdminSection('articles')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Articles
+                    </button>
+                    <button class="admin-nav-item" onclick="app.showAdminSection('create')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        Create Post
+                    </button>
+                    <button class="admin-nav-item" onclick="app.showAdminSection('subscribers')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        Subscribers
+                    </button>
+                    <button class="admin-nav-item" onclick="app.showAdminSection('settings')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                        Settings
+                    </button>
+                    <button class="admin-nav-item" onclick="app.logout()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        Logout
+                    </button>
+                </nav>
+            </aside>
+            <div class="admin-main">
+                <div class="admin-header">
+                    <h2 id="adminPageTitle" style="font-size: 20px; font-weight: 800;">Dashboard</h2>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span id="adminUserName" style="font-size: 14px; color: var(--text-secondary); font-weight: 600;">Admin</span>
+                        <div style="width: 36px; height: 36px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">NM</div>
+                    </div>
+                </div>
+                <div class="admin-content" id="adminContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                <input type="text" class="search-input" placeholder="Search news, bursaries, jobs..." id="searchInput">
+                <button class="icon-btn" id="closeSearch" style="width: 32px; height: 32px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                </button>
+            </div>
+            <div class="search-suggestions-title">Trending Searches</div>
+            <div class="search-suggestions">
+                <button class="suggestion-chip" onclick="app.search('NSFAS 2026')">NSFAS 2026</button>
+                <button class="suggestion-chip" onclick="app.search('Wits applications')">Wits applications</button>
+                <button class="suggestion-chip" onclick="app.search('Graduate jobs')">Graduate jobs</button>
+                <button class="suggestion-chip" onclick="app.search('Student accommodation')">Student accommodation</button>
+                <button class="suggestion-chip" onclick="app.search('Bursaries')">Bursaries</button>
+                <button class="suggestion-chip" onclick="app.search('UCT protests')">UCT protests</button>
+            </div>
+            <div id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- PAYMENT MODAL -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Complete Payment</h3>
+                <button class="modal-close" onclick="app.closePayment()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="paymentPlanSummary" style="margin-bottom: 24px; padding: 16px; background: var(--bg); border-radius: var(--radius-md);">
+                    <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 4px;">Selected Plan</div>
+                    <div id="paymentPlanName" style="font-size: 18px; font-weight: 800;">Student Pro</div>
+                    <div id="paymentPlanPrice" style="font-size: 24px; font-weight: 900; color: var(--accent);">R49/month</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="paymentName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="paymentEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Payment Method</label>
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="app.selectPayment(this, 'paystack')">
+                            <div class="payment-method-icon">💳</div>
+                            <div class="payment-method-info">
+                                <div class="payment-method-name">Paystack</div>
+                                <div class="payment-method-desc">Secure card & bank transfer</div>
+                            </div>
+                        </div>
+                        <div class="payment-method" onclick="app.selectPayment(this, 'stripe')">
+                            <div class="payment-method-icon">💳</div>
+                            <div class="payment-method-info">
+                                <div class="payment-method-name">Stripe</div>
+                                <div class="payment-method-desc">International cards accepted</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closePayment()">Cancel</button>
+                <button class="btn btn-primary btn-block" onclick="app.processPayment()">Pay Securely</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-list">
+            <button class="bottom-nav-item active" onclick="app.goHome()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Home
+            </button>
+            <button class="bottom-nav-item" id="bottomSearchBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                Search
+            </button>
+            <button class="bottom-nav-item discover" onclick="app.showDiscover()">
+                <div class="discover-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg>
+                </div>
+                Discover
+            </button>
+            <button class="bottom-nav-item" onclick="app.showSaved()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                Saved
+            </button>
+            <button class="bottom-nav-item" onclick="app.showProfile()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Profile
+            </button>
+        </div>
+    </nav>
+
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"></path></svg>
+    </button>
+    <script>
+    // ==================== SA STUDENT HUB - PRODUCTION APP ====================
+    const app = {
+        // CONFIGURATION - REPLACE WITH YOUR REAL API KEYS
+        config: {
+            NEWS_API_KEY: 'YOUR_NEWS_API_KEY_HERE',
+            NEWS_API_URL: 'https://newsapi.org/v2/everything',
+            SUPABASE_URL: 'https://your-project.supabase.co',
+            SUPABASE_KEY: 'YOUR_SUPABASE_ANON_KEY_HERE',
+            PAYSTACK_PUBLIC_KEY: 'pk_test_YOUR_PAYSTACK_KEY_HERE',
+            STRIPE_PUBLIC_KEY: 'pk_test_YOUR_STRIPE_KEY_HERE',
+            ADMIN_EMAIL: 'admin@sastudenthub.co.za',
+            ADMIN_PASSWORD: 'Admin@2026!'
+        },
+
+        state: {
+            currentPage: 'home',
+            currentCategory: 'all',
+            articles: [],
+            apiArticles: [],
+            savedArticles: JSON.parse(localStorage.getItem('savedArticles') || '[]'),
+            user: JSON.parse(localStorage.getItem('user') || 'null'),
+            isAdmin: localStorage.getItem('isAdmin') === 'true',
+            language: localStorage.getItem('lang') || 'en',
+            currentArticle: null,
+            selectedPlan: null,
+            selectedPaymentMethod: null
+        },
+
+        init() {
+            this.setupEventListeners();
+            this.loadManualArticles();
+            this.fetchAPINews();
+            this.updateAuthUI();
+            this.setupScrollEffects();
+        },
+
+        setupEventListeners() {
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+                const scrollTop = document.getElementById('scrollTop');
+                if (window.scrollY > 500) scrollTop.classList.add('visible');
+                else scrollTop.classList.remove('visible');
+            });
+
+            document.getElementById('langBtn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.getElementById('langDropdown').classList.toggle('show');
+            });
+            document.addEventListener('click', () => {
+                document.getElementById('langDropdown').classList.remove('show');
+            });
+
+            document.getElementById('searchBtn').addEventListener('click', () => this.openSearch());
+            document.getElementById('bottomSearchBtn').addEventListener('click', () => this.openSearch());
+            document.getElementById('closeSearch').addEventListener('click', () => this.closeSearch());
+            document.getElementById('searchOverlay').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('searchOverlay')) this.closeSearch();
+            });
+            document.getElementById('searchInput').addEventListener('input', (e) => this.handleSearch(e.target.value));
+            document.getElementById('searchInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') this.search(document.getElementById('searchInput').value);
+            });
+        },
+
+        setupScrollEffects() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.article-card').forEach(card => observer.observe(card));
+        },
+
+        // ==================== NEWS API ====================
+        async fetchAPINews() {
+            const container = document.getElementById('apiNewsContainer');
+            if (this.config.NEWS_API_KEY === 'YOUR_NEWS_API_KEY_HERE') {
+                this.renderDemoNews();
+                return;
+            }
+            try {
+                const queries = [
+                    'South Africa students bursary NSFAS',
+                    'South Africa university internship job graduate',
+                    'South Africa education student accommodation'
+                ];
+                const query = queries[Math.floor(Math.random() * queries.length)];
+                const url = `${this.config.NEWS_API_URL}?q=${encodeURIComponent(query)}&language=en&sortBy=publishedAt&pageSize=6&apiKey=${this.config.NEWS_API_KEY}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                if (data.status === 'ok' && data.articles) {
+                    this.state.apiArticles = data.articles.map((article, index) => ({
+                        id: `api-${index}`,
+                        title: article.title,
+                        excerpt: article.description || 'Click to read more...',
+                        content: article.content || article.description || 'Full content not available.',
+                        image: article.urlToImage || `https://images.unsplash.com/photo-${['1523050854058-8df90110c9f1','1524178232363-1fb2b075b655','1556761175-5973dc0f32e7','1517245386807-bb43f82c33c4','1523240795612-9a054b0db644','1434030216411-0b793f4b4173'][index]}?w=800&h=600&fit=crop`,
+                        category: this.categorizeArticle(article.title + ' ' + (article.description || '')),
+                        source: article.source.name,
+                        author: article.author || article.source.name,
+                        publishedAt: new Date(article.publishedAt),
+                        url: article.url,
+                        isAPI: true,
+                        readTime: Math.ceil((article.content || article.description || '').length / 1000) + ' min'
+                    }));
+                    this.renderAPINews();
+                } else {
+                    throw new Error('API returned no articles');
+                }
+            } catch (error) {
+                console.error('News API Error:', error);
+                this.renderDemoNews();
+                this.showToast('Using demo data. Add your NewsAPI key for live news.', 'info');
+            }
+        },
+
+        categorizeArticle(text) {
+            text = text.toLowerCase();
+            if (text.includes('bursary') || text.includes('scholarship') || text.includes('fund') || text.includes('nsfas')) return 'bursaries';
+            if (text.includes('job') || text.includes('career') || text.includes('employment') || text.includes('hire')) return 'jobs';
+            if (text.includes('intern') || text.includes('trainee') || text.includes('graduate program')) return 'internships';
+            if (text.includes('accommodation') || text.includes('residence') || text.includes('housing')) return 'student-news';
+            if (text.includes('exam') || text.includes('study') || text.includes('mental health') || text.includes('lifestyle')) return 'lifestyle';
+            return 'top-stories';
+        },
+
+        refreshNews() {
+            const container = document.getElementById('apiNewsContainer');
+            container.innerHTML = '<div class="loading-spinner"></div><p class="loading-text">Refreshing news feed...</p>';
+            this.fetchAPINews();
+            this.showToast('News feed refreshed!', 'success');
+        },
+
+        renderAPINews() {
+            const container = document.getElementById('apiNewsContainer');
+            const articles = this.state.currentCategory === 'all'
+                ? this.state.apiArticles
+                : this.state.apiArticles.filter(a => a.category === this.state.currentCategory);
+            if (articles.length === 0) {
+                container.innerHTML = '<p class="loading-text">No articles found in this category.</p>';
+                return;
+            }
+            const featured = articles[0];
+            const rest = articles.slice(1);
+            let html = `
+                <article class="featured-card animate-in" onclick="app.openArticle('${featured.id}')">
+                    <div class="featured-image">
+                        <img src="${featured.image}" alt="${featured.title}" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop'">
+                        <div class="featured-overlay">
+                            <div class="featured-meta">
+                                <span class="category-badge badge-${featured.category === 'bursaries' ? 'opportunities' : featured.category === 'jobs' ? 'politics' : featured.category === 'internships' ? 'lifestyle' : 'education'}">${featured.category.replace('-', ' ').toUpperCase()}</span>
+                                <span class="timestamp">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    ${this.formatTime(featured.publishedAt)}
+                                </span>
+                            </div>
+                            <h1 class="featured-title">${featured.title}</h1>
+                            <p class="featured-excerpt">${featured.excerpt}</p>
+                        </div>
+                    </div>
+                </article>
+            `;
+            if (rest.length > 0) {
+                html += '<div class="articles-grid" style="margin-top: 24px;">';
+                rest.forEach((article, i) => { html += this.renderArticleCard(article, i); });
+                html += '</div>';
+            }
+            container.innerHTML = html;
+            this.setupScrollEffects();
+        },
+
+        renderDemoNews() {
+            const demoArticles = [
+                { id: 'demo-1', title: "G20 without SA makes 'no sense', AU chief says as he promises to lobby for student representation", excerpt: "The African Union Commission chairperson emphasises the critical role of South African students in shaping continental education policy ahead of the G20 summit.", content: "<p>The African Union Commission chairperson has emphasised the critical role of South African students in shaping continental education policy ahead of the G20 summit.</p><p>Speaking at a press conference in Addis Ababa, the chairperson stated that any discussion about Africa's future without including South African student voices would be incomplete.</p><p>\"South Africa has one of the most vibrant and politically active student populations on the continent. Their input is essential,\" he said.</p>", image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop", category: "top-stories", source: "SA Student Hub", author: "Ngomani Masungulo", publishedAt: new Date(Date.now() - 42 * 60000), isAPI: false, readTime: "5 min" },
+                { id: 'demo-2', title: "NSFAS confirms increased funding allowance for 2026 academic year", excerpt: "The National Student Financial Aid Scheme announces a 15% increase in accommodation and meal allowances for qualifying students.", content: "<p>The National Student Financial Aid Scheme (NSFAS) has confirmed a significant increase in funding allowances for the 2026 academic year.</p><p>Students who qualify for NSFAS funding will now receive a 15% increase in their accommodation and meal allowances, effective from January 2026.</p>", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop", category: "bursaries", source: "NSFAS Official", author: "Finance Desk", publishedAt: new Date(Date.now() - 2 * 3600000), isAPI: false, readTime: "4 min" },
+                { id: 'demo-3', title: "Major tech companies launch graduate recruitment drive across SA universities", excerpt: "Google, Microsoft, and local startups announce combined 2,000 entry-level positions for 2026 graduates in software engineering and data science.", content: "<p>Some of the world's biggest tech companies have announced a massive recruitment drive targeting South African graduates.</p><p>Google, Microsoft, and several local startups have committed to creating over 2,000 entry-level positions specifically for 2026 graduates.</p>", image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop", category: "jobs", source: "Tech SA", author: "Career Desk", publishedAt: new Date(Date.now() - 4 * 3600000), isAPI: false, readTime: "6 min" },
+                { id: 'demo-4', title: "SAB launches R50m internship programme for hospitality and agriculture students", excerpt: "South African Breweries partners with TVET colleges to provide paid internships and practical training for 500 students nationwide.", content: "<p>South African Breweries (SAB) has announced a R50 million investment in a new internship programme targeting hospitality and agriculture students.</p><p>The programme will partner with TVET colleges across the country to provide paid internships for 500 students.</p>", image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop", category: "internships", source: "SAB News", author: "Business Desk", publishedAt: new Date(Date.now() - 5 * 3600000), isAPI: false, readTime: "5 min" },
+                { id: 'demo-5', title: "Wits University unveils new affordable student housing complex in Braamfontein", excerpt: "The R120 million development will provide 800 beds at subsidised rates, addressing the critical accommodation shortage for first-year students.", content: "<p>Wits University has unveiled a new student housing complex in Braamfontein designed to address the critical shortage of affordable accommodation.</p><p>The R120 million development will provide 800 beds at subsidised rates, primarily targeting first-year students.</p>", image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop", category: "student-news", source: "Wits News", author: "Campus Desk", publishedAt: new Date(Date.now() - 8 * 3600000), isAPI: false, readTime: "3 min" },
+                { id: 'demo-6', title: "10 proven study techniques to ace your June exams without burning out", excerpt: "Educational psychologists share evidence-based strategies for effective revision, stress management, and maintaining mental health during exam season.", content: "<p>As the June exam period approaches, educational psychologists have shared their top evidence-based strategies for effective studying.</p><p>From the Pomodoro Technique to active recall, these methods have been proven to improve retention while reducing burnout.</p>", image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&h=400&fit=crop", category: "lifestyle", source: "Student Wellness", author: "Health Desk", publishedAt: new Date(Date.now() - 12 * 3600000), isAPI: false, readTime: "7 min" }
+            ];
+            this.state.apiArticles = demoArticles;
+            this.renderAPINews();
+        },
+
+        // ==================== MANUAL ARTICLES ====================
+        loadManualArticles() {
+            let manualArticles = JSON.parse(localStorage.getItem('manualArticles') || 'null');
+            if (!manualArticles) {
+                manualArticles = [
+                    { id: 'manual-1', title: "Fully-funded scholarships to study abroad: Top 5 programmes for SA students in 2026", excerpt: "From Chevening to Fulbright, we break down the most prestigious international scholarship opportunities and application deadlines.", content: "<p>Studying abroad can be a life-changing experience, but the cost often prevents many South African students from pursuing this dream.</p><p>Fortunately, there are several fully-funded scholarship programmes available specifically for South African students.</p><h2>1. Chevening Scholarships</h2><p>The UK government's global scholarship programme offers full financial support for a one-year master's degree at any UK university.</p><h2>2. Fulbright Program</h2><p>The US government's flagship international exchange programme provides funding for graduate study and research.</p>", image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop", category: "bursaries", source: "SA Student Hub", author: "Ngomani Masungulo", publishedAt: new Date(Date.now() - 24 * 3600000).toISOString(), status: "published", isManual: true, readTime: "8 min" },
+                    { id: 'manual-2', title: "UJ launches new AI and Data Science faculty for 2026 intake", excerpt: "The University of Johannesburg announces a groundbreaking new faculty focused on artificial intelligence and data science education.", content: "<p>The University of Johannesburg has announced the launch of a new faculty dedicated to Artificial Intelligence and Data Science.</p><p>The faculty will offer undergraduate and postgraduate programmes starting from the 2026 academic year.</p>", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop", category: "student-news", source: "SA Student Hub", author: "Ngomani Masungulo", publishedAt: new Date(Date.now() - 48 * 3600000).toISOString(), status: "published", isManual: true, readTime: "4 min" }
+                ];
+                localStorage.setItem('manualArticles', JSON.stringify(manualArticles));
+            }
+            this.state.articles = manualArticles;
+            this.renderManualArticles();
+        },
+
+        renderManualArticles() {
+            const container = document.getElementById('manualArticlesGrid');
+            const articles = this.state.currentCategory === 'all'
+                ? this.state.articles
+                : this.state.articles.filter(a => a.category === this.state.currentCategory);
+            if (articles.length === 0) {
+                container.innerHTML = '<p class="loading-text">No editor picks yet. Create your first post in the admin dashboard!</p>';
+                return;
+            }
+            container.innerHTML = articles.map((article, i) => this.renderArticleCard(article, i)).join('');
+            this.setupScrollEffects();
+        },
+
+        renderArticleCard(article, index) {
+            const isSaved = this.state.savedArticles.includes(article.id);
+            const time = article.publishedAt ? this.formatTime(new Date(article.publishedAt)) : 'Just now';
+            const badgeClass = article.category === 'bursaries' ? 'opportunities' : article.category === 'jobs' ? 'politics' : article.category === 'internships' ? 'lifestyle' : article.category === 'lifestyle' ? 'lifestyle' : 'education';
+            return `
+                <article class="article-card animate-in" style="animation-delay: ${index * 0.1}s;" onclick="app.openArticle('${article.id}')">
+                    <div class="article-image">
+                        <img src="${article.image}" alt="${article.title}" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop'">
+                        <span class="category-badge badge-${badgeClass}">${article.category.replace('-', ' ').toUpperCase()}</span>
+                        ${article.isAPI ? '<span class="article-type-indicator">LIVE</span>' : ''}
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-source">${article.source}</span>
+                            <span class="timestamp" style="font-size: 12px; color: var(--text-muted);">${time}</span>
+                        </div>
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-footer">
+                            <span class="read-time">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                ${article.readTime || '5 min'}
+                            </span>
+                            <button class="save-btn ${isSaved ? 'saved' : ''}" onclick="event.stopPropagation(); app.toggleSave('${article.id}')" aria-label="Save article">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `;
+        },
+
+        // ==================== ARTICLE DETAIL ====================
+        openArticle(id) {
+            const allArticles = [...this.state.apiArticles, ...this.state.articles];
+            const article = allArticles.find(a => a.id === id);
+            if (!article) return;
+            this.state.currentArticle = article;
+            const page = document.getElementById('articlePage');
+            const content = document.getElementById('articleDetailContent');
+            const badgeClass = article.category === 'bursaries' ? 'opportunities' : article.category === 'jobs' ? 'politics' : article.category === 'internships' ? 'lifestyle' : article.category === 'lifestyle' ? 'lifestyle' : 'education';
+            content.innerHTML = `
+                <div class="article-detail">
+                    <div class="article-detail-header">
+                        <img src="${article.image}" class="article-detail-image" alt="${article.title}" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop'">
+                        <div class="article-detail-overlay">
+                            <div class="featured-meta">
+                                <span class="category-badge badge-${badgeClass}">${article.category.replace('-', ' ').toUpperCase()}</span>
+                                <span class="timestamp">${article.source} • ${this.formatTime(new Date(article.publishedAt))}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-detail-body">
+                        <h1 class="article-detail-title">${article.title}</h1>
+                        <div class="article-detail-meta">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">${(article.author || 'A').charAt(0)}</div>
+                                <div>
+                                    <div style="font-weight: 700;">${article.author || 'Anonymous'}</div>
+                                    <div style="font-size: 13px; color: var(--text-muted);">${article.source}</div>
+                                </div>
+                            </div>
+                            <span class="read-time">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                ${article.readTime || '5 min'} read
+                            </span>
+                        </div>
+                        <div class="article-detail-content">
+                            ${article.content || article.excerpt}
+                        </div>
+                        <div class="article-tags">
+                            <span class="article-tag" onclick="app.filterCategory('${article.category}')">${article.category.replace('-', ' ')}</span>
+                            <span class="article-tag">South Africa</span>
+                            <span class="article-tag">Students</span>
+                            <span class="article-tag">2026</span>
+                        </div>
+                        <div class="share-buttons">
+                            <button class="share-btn" onclick="app.shareTo('twitter')" title="Share on Twitter">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </button>
+                            <button class="share-btn" onclick="app.shareTo('facebook')" title="Share on Facebook">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </button>
+                            <button class="share-btn" onclick="app.shareTo('whatsapp')" title="Share on WhatsApp">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/></svg>
+                            </button>
+                            <button class="share-btn" onclick="app.copyLink()" title="Copy link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                            </button>
+                        </div>
+                        ${article.url ? `<div style="margin-top: 24px; padding: 16px; background: var(--bg); border-radius: var(--radius-md);"><a href="${article.url}" target="_blank" style="color: var(--accent); font-weight: 700;">Read original source →</a></div>` : ''}
+                    </div>
+                </div>
+            `;
+            this.hideAllPages();
+            page.classList.remove('hidden');
+            window.scrollTo(0, 0);
+            document.title = `${article.title} | SA Student Hub`;
+        },
+
+        // ==================== CATEGORY FILTERING ====================
+        filterCategory(category) {
+            this.state.currentCategory = category;
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.category === category);
+            });
+            this.renderAPINews();
+            this.renderManualArticles();
+            document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
+            this.showToast(`Showing ${category.replace('-', ' ')} news`, 'info');
+        },
+
+        // ==================== SEARCH ====================
+        openSearch() {
+            document.getElementById('searchOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => document.getElementById('searchInput').focus(), 300);
+        },
+
+        closeSearch() {
+            document.getElementById('searchOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').innerHTML = '';
+        },
+
+        handleSearch(query) {
+            if (!query.trim()) {
+                document.getElementById('searchResults').innerHTML = '';
+                return;
+            }
+            const allArticles = [...this.state.apiArticles, ...this.state.articles];
+            const results = allArticles.filter(a =>
+                a.title.toLowerCase().includes(query.toLowerCase()) ||
+                a.excerpt.toLowerCase().includes(query.toLowerCase()) ||
+                a.category.toLowerCase().includes(query.toLowerCase())
+            );
+            const container = document.getElementById('searchResults');
+            if (results.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 20px;">No results found</p>';
+                return;
+            }
+            container.innerHTML = results.map(article => `
+                <div class="search-result-item" onclick="app.openArticle('${article.id}'); app.closeSearch();">
+                    <img src="${article.image}" class="search-result-img" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=100&h=100&fit=crop'">
+                    <div>
+                        <div class="search-result-title">${article.title}</div>
+                        <div class="search-result-meta">${article.source} • ${article.category.replace('-', ' ')}</div>
+                    </div>
+                </div>
+            `).join('');
+        },
+
+        search(query) {
+            document.getElementById('searchInput').value = query;
+            this.handleSearch(query);
+        },
+
+        // ==================== AUTHENTICATION ====================
+        showAuth(type) {
+            this.hideAllPages();
+            document.getElementById('authPage').classList.remove('hidden');
+            const content = document.getElementById('authContent');
+            if (type === 'signin') {
+                content.innerHTML = `
+                    <h2 class="auth-title">Welcome Back</h2>
+                    <p class="auth-subtitle">Sign in to access your saved articles and personalized feed</p>
+                    <div class="social-login">
+                        <button class="social-btn" onclick="app.socialLogin('google')">
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                            Google
+                        </button>
+                        <button class="social-btn" onclick="app.socialLogin('facebook')">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            Facebook
+                        </button>
+                    </div>
+                    <div class="divider">or continue with email</div>
+                    <form onsubmit="app.handleSignIn(event)">
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" id="signinEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" id="signinPassword" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In</button>
+                    </form>
+                    <div class="auth-footer">
+                        Don't have an account? <a href="#" onclick="app.showAuth('signup'); return false;">Sign up</a>
+                        <br><br>
+                        <a href="#" onclick="app.showAuth('admin'); return false;" style="font-size: 12px; color: var(--text-muted);">Admin Login</a>
+                    </div>
+                `;
+            } else if (type === 'signup') {
+                content.innerHTML = `
+                    <h2 class="auth-title">Create Account</h2>
+                    <p class="auth-subtitle">Join thousands of South African students</p>
+                    <form onsubmit="app.handleSignUp(event)">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-input" id="signupName" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" id="signupEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" id="signupPassword" placeholder="Create a password" required minlength="6">
+                            <div class="form-hint">Must be at least 6 characters</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">University / College</label>
+                            <select class="form-select" id="signupUniversity">
+                                <option value="">Select your institution</option>
+                                <option value="uct">University of Cape Town</option>
+                                <option value="wits">University of the Witwatersrand</option>
+                                <option value="uj">University of Johannesburg</option>
+                                <option value="up">University of Pretoria</option>
+                                <option value="ukzn">University of KwaZulu-Natal</option>
+                                <option value="su">Stellenbosch University</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account</button>
+                    </form>
+                    <div class="auth-footer">
+                        Already have an account? <a href="#" onclick="app.showAuth('signin'); return false;">Sign in</a>
+                    </div>
+                `;
+            } else if (type === 'admin') {
+                content.innerHTML = `
+                    <h2 class="auth-title">Admin Login</h2>
+                    <p class="auth-subtitle">Secure access to the management dashboard</p>
+                    <form onsubmit="app.handleAdminLogin(event)">
+                        <div class="form-group">
+                            <label class="form-label">Admin Email</label>
+                            <input type="email" class="form-input" id="adminEmail" placeholder="admin@sastudenthub.co.za" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" id="adminPassword" placeholder="Enter admin password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Access Dashboard</button>
+                    </form>
+                    <div class="auth-footer">
+                        <a href="#" onclick="app.showAuth('signin'); return false;">Back to user login</a>
+                    </div>
+                `;
+            }
+            window.scrollTo(0, 0);
+        },
+
+        handleSignIn(e) {
+            e.preventDefault();
+            const email = document.getElementById('signinEmail').value;
+            const password = document.getElementById('signinPassword').value;
+            const user = { email, name: email.split('@')[0], id: 'user-' + Date.now() };
+            this.state.user = user;
+            localStorage.setItem('user', JSON.stringify(user));
+            this.showToast('Welcome back, ' + user.name + '!', 'success');
+            this.updateAuthUI();
+            this.goHome();
+        },
+
+        handleSignUp(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const university = document.getElementById('signupUniversity').value;
+            const user = { name, email, university, id: 'user-' + Date.now() };
+            this.state.user = user;
+            localStorage.setItem('user', JSON.stringify(user));
+            this.showToast('Account created successfully! Welcome, ' + name + '!', 'success');
+            this.updateAuthUI();
+            this.goHome();
+        },
+
+        handleAdminLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            if (email === this.config.ADMIN_EMAIL && password === this.config.ADMIN_PASSWORD) {
+                this.state.isAdmin = true;
+                localStorage.setItem('isAdmin', 'true');
+                this.showToast('Admin access granted. Welcome, Ngomani!', 'success');
+                this.showAdmin();
+            } else {
+                this.showToast('Invalid admin credentials. Please try again.', 'error');
+            }
+        },
+
+        socialLogin(provider) {
+            this.showToast(provider + ' login coming soon! Use email login for now.', 'info');
+        },
+
+        logout() {
+            this.state.user = null;
+            this.state.isAdmin = false;
+            localStorage.removeItem('user');
+            localStorage.removeItem('isAdmin');
+            this.updateAuthUI();
+            this.showToast('Logged out successfully', 'info');
+            this.goHome();
+        },
+
+        updateAuthUI() {
+            // Updates UI based on auth state
+        },
+
+        // ==================== ADMIN DASHBOARD ====================
+        showAdmin() {
+            if (!this.state.isAdmin) {
+                this.showAuth('admin');
+                return;
+            }
+            this.hideAllPages();
+            document.getElementById('adminPage').classList.remove('hidden');
+            this.showAdminSection('dashboard');
+        },
+
+        showAdminSection(section) {
+            document.querySelectorAll('.admin-nav-item').forEach(item => {
+                item.classList.toggle('active', item.textContent.trim().toLowerCase().includes(section));
+            });
+            const content = document.getElementById('adminContent');
+            const title = document.getElementById('adminPageTitle');
+            if (section === 'dashboard') {
+                title.textContent = 'Dashboard';
+                const totalArticles = this.state.articles.length + this.state.apiArticles.length;
+                const totalViews = Math.floor(Math.random() * 50000) + 10000;
+                const subscribers = Math.floor(Math.random() * 5000) + 1000;
+                content.innerHTML = `
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Total Articles</div>
+                            <div class="stat-value">${totalArticles}</div>
+                            <div class="stat-change positive">+12% this week</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Total Views</div>
+                            <div class="stat-value">${(totalViews / 1000).toFixed(1)}k</div>
+                            <div class="stat-change positive">+28% this week</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Subscribers</div>
+                            <div class="stat-value">${(subscribers / 1000).toFixed(1)}k</div>
+                            <div class="stat-change positive">+45 this week</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">API Status</div>
+                            <div class="stat-value" style="font-size: 24px; color: var(--success);">Active</div>
+                            <div class="stat-change positive">NewsAPI connected</div>
+                        </div>
+                    </div>
+                    <div style="background: var(--card-bg); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+                        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">Recent Activity</h3>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg); border-radius: var(--radius-sm);">
+                                <div style="width: 8px; height: 8px; background: var(--success); border-radius: 50%;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; font-size: 14px;">News feed refreshed</div>
+                                    <div style="font-size: 12px; color: var(--text-muted);">5 minutes ago</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg); border-radius: var(--radius-sm);">
+                                <div style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; font-size: 14px;">New subscriber: Student Pro plan</div>
+                                    <div style="font-size: 12px; color: var(--text-muted);">12 minutes ago</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg); border-radius: var(--radius-sm);">
+                                <div style="width: 8px; height: 8px; background: var(--info); border-radius: 50%;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; font-size: 14px;">Article published: NSFAS Updates</div>
+                                    <div style="font-size: 12px; color: var(--text-muted);">1 hour ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (section === 'articles') {
+                title.textContent = 'Manage Articles';
+                content.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h3 style="font-size: 18px; font-weight: 800;">All Articles (${this.state.articles.length})</h3>
+                        <button class="btn btn-primary" onclick="app.showAdminSection('create')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                            New Post
+                        </button>
+                    </div>
+                    <div class="admin-table">
+                        <table>
+                            <thead>
+                                <tr><th>Title</th><th>Category</th><th>Status</th><th>Date</th><th>Actions</th></tr>
+                            </thead>
+                            <tbody>
+                                ${this.state.articles.map(article => `
+                                    <tr>
+                                        <td style="font-weight: 600;">${article.title.substring(0, 50)}${article.title.length > 50 ? '...' : ''}</td>
+                                        <td><span class="category-badge badge-${article.category === 'bursaries' ? 'opportunities' : 'education'}" style="font-size: 10px;">${article.category}</span></td>
+                                        <td><span class="status-badge status-${article.status}">${article.status}</span></td>
+                                        <td style="color: var(--text-muted); font-size: 13px;">${new Date(article.publishedAt).toLocaleDateString()}</td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <button class="table-btn table-btn-edit" onclick="app.editArticle('${article.id}')">Edit</button>
+                                                <button class="table-btn table-btn-delete" onclick="app.deleteArticle('${article.id}')">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (section === 'create') {
+                title.textContent = 'Create New Post';
+                content.innerHTML = `
+                    <form onsubmit="app.handleCreatePost(event)">
+                        <div class="form-group">
+                            <label class="form-label">Article Title *</label>
+                            <input type="text" class="form-input" id="postTitle" placeholder="Enter a catchy headline" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category *</label>
+                            <select class="form-select" id="postCategory" required>
+                                <option value="">Select category</option>
+                                <option value="top-stories">Top Stories</option>
+                                <option value="student-news">Student News</option>
+                                <option value="bursaries">Bursaries</option>
+                                <option value="jobs">Jobs</option>
+                                <option value="internships">Internships</option>
+                                <option value="lifestyle">Lifestyle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Featured Image URL</label>
+                            <input type="url" class="form-input" id="postImage" placeholder="https://example.com/image.jpg">
+                            <div class="form-hint">Leave empty for auto-generated image</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Short Excerpt *</label>
+                            <input type="text" class="form-input" id="postExcerpt" placeholder="Brief summary (2-3 sentences)" required maxlength="200">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Full Content *</label>
+                            <textarea class="form-textarea" id="postContent" placeholder="Write your full article here... Use HTML for formatting." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Author Name</label>
+                            <input type="text" class="form-input" id="postAuthor" value="Ngomani Masungulo">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" id="postStatus">
+                                <option value="published">Published</option>
+                                <option value="draft">Draft</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 12px;">
+                            <button type="submit" class="btn btn-primary btn-lg">Publish Article</button>
+                            <button type="button" class="btn btn-outline" onclick="app.showAdminSection('articles')">Cancel</button>
+                        </div>
+                    </form>
+                `;
+            } else if (section === 'subscribers') {
+                title.textContent = 'Subscribers';
+                content.innerHTML = `
+                    <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="stat-card">
+                            <div class="stat-label">Free Users</div>
+                            <div class="stat-value">3.2k</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Paid Subscribers</div>
+                            <div class="stat-value">847</div>
+                        </div>
+                    </div>
+                    <div class="admin-table">
+                        <table>
+                            <thead><tr><th>User</th><th>Plan</th><th>Joined</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <tr><td>student@uct.ac.za</td><td>Student Pro</td><td>2026-04-28</td><td><span class="status-badge status-published">Active</span></td></tr>
+                                <tr><td>learner@wits.ac.za</td><td>Free</td><td>2026-04-27</td><td><span class="status-badge status-published">Active</span></td></tr>
+                                <tr><td>grad@uj.ac.za</td><td>Student Premium</td><td>2026-04-25</td><td><span class="status-badge status-published">Active</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (section === 'settings') {
+                title.textContent = 'Settings';
+                content.innerHTML = `
+                    <div style="background: var(--card-bg); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 24px;">
+                        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">API Configuration</h3>
+                        <div class="form-group">
+                            <label class="form-label">NewsAPI Key</label>
+                            <input type="text" class="form-input" value="${this.config.NEWS_API_KEY}" readonly style="background: var(--bg);">
+                            <div class="form-hint">Get your free key from newsapi.org</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Supabase URL</label>
+                            <input type="text" class="form-input" value="${this.config.SUPABASE_URL}" readonly style="background: var(--bg);">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paystack Public Key</label>
+                            <input type="text" class="form-input" value="${this.config.PAYSTACK_PUBLIC_KEY}" readonly style="background: var(--bg);">
+                        </div>
+                    </div>
+                    <div style="background: var(--card-bg); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+                        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">Admin Credentials</h3>
+                        <div class="form-group">
+                            <label class="form-label">Admin Email</label>
+                            <input type="email" class="form-input" value="${this.config.ADMIN_EMAIL}" readonly style="background: var(--bg);">
+                        </div>
+                        <div class="form-hint" style="color: var(--warning);">⚠️ Change these credentials before going live!</div>
+                    </div>
+                `;
+            }
+        },
+
+        handleCreatePost(e) {
+            e.preventDefault();
+            const article = {
+                id: 'manual-' + Date.now(),
+                title: document.getElementById('postTitle').value,
+                category: document.getElementById('postCategory').value,
+                image: document.getElementById('postImage').value || 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop',
+                excerpt: document.getElementById('postExcerpt').value,
+                content: document.getElementById('postContent').value,
+                author: document.getElementById('postAuthor').value,
+                status: document.getElementById('postStatus').value,
+                source: 'SA Student Hub',
+                publishedAt: new Date().toISOString(),
+                isManual: true,
+                readTime: Math.ceil(document.getElementById('postContent').value.length / 1000) + ' min'
+            };
+            this.state.articles.unshift(article);
+            localStorage.setItem('manualArticles', JSON.stringify(this.state.articles));
+            this.showToast('Article published successfully!', 'success');
+            this.showAdminSection('articles');
+            this.renderManualArticles();
+        },
+
+        editArticle(id) {
+            const article = this.state.articles.find(a => a.id === id);
+            if (!article) return;
+            this.showAdminSection('create');
+            document.getElementById('adminPageTitle').textContent = 'Edit Article';
+            setTimeout(() => {
+                document.getElementById('postTitle').value = article.title;
+                document.getElementById('postCategory').value = article.category;
+                document.getElementById('postImage').value = article.image;
+                document.getElementById('postExcerpt').value = article.excerpt;
+                document.getElementById('postContent').value = article.content;
+                document.getElementById('postAuthor').value = article.author;
+                document.getElementById('postStatus').value = article.status;
+                const form = document.querySelector('form[onsubmit="app.handleCreatePost(event)"]');
+                form.onsubmit = (e) => {
+                    e.preventDefault();
+                    article.title = document.getElementById('postTitle').value;
+                    article.category = document.getElementById('postCategory').value;
+                    article.image = document.getElementById('postImage').value;
+                    article.excerpt = document.getElementById('postExcerpt').value;
+                    article.content = document.getElementById('postContent').value;
+                    article.author = document.getElementById('postAuthor').value;
+                    article.status = document.getElementById('postStatus').value;
+                    localStorage.setItem('manualArticles', JSON.stringify(this.state.articles));
+                    this.showToast('Article updated successfully!', 'success');
+                    this.showAdminSection('articles');
+                    this.renderManualArticles();
+                };
+            }, 100);
+        },
+
+        deleteArticle(id) {
+            if (!confirm('Are you sure you want to delete this article? This cannot be undone.')) return;
+            this.state.articles = this.state.articles.filter(a => a.id !== id);
+            localStorage.setItem('manualArticles', JSON.stringify(this.state.articles));
+            this.showToast('Article deleted', 'info');
+            this.showAdminSection('articles');
+            this.renderManualArticles();
+        },
+
+        // ==================== SUBSCRIPTION & PAYMENT ====================
+        showSubscription() {
+            this.hideAllPages();
+            document.getElementById('subscriptionPage').classList.remove('hidden');
+            window.scrollTo(0, 0);
+            document.title = 'Subscribe | SA Student Hub';
+        },
+
+        showPayment(plan) {
+            this.state.selectedPlan = plan;
+            const prices = { pro: 'R49/month', premium: 'R99/month' };
+            const names = { pro: 'Student Pro', premium: 'Student Premium' };
+            document.getElementById('paymentPlanName').textContent = names[plan];
+            document.getElementById('paymentPlanPrice').textContent = prices[plan];
+            document.getElementById('paymentModal').classList.add('active');
+        },
+
+        closePayment() {
+            document.getElementById('paymentModal').classList.remove('active');
+            this.state.selectedPlan = null;
+            this.state.selectedPaymentMethod = null;
+        },
+
+        selectPayment(el, method) {
+            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+            el.classList.add('selected');
+            this.state.selectedPaymentMethod = method;
+        },
+
+        processPayment() {
+            const name = document.getElementById('paymentName').value;
+            const email = document.getElementById('paymentEmail').value;
+            if (!name || !email) {
+                this.showToast('Please fill in all fields', 'error');
+                return;
+            }
+            if (!this.state.selectedPaymentMethod) {
+                this.showToast('Please select a payment method', 'error');
+                return;
+            }
+            if (this.state.selectedPaymentMethod === 'paystack' && this.config.PAYSTACK_PUBLIC_KEY !== 'pk_test_YOUR_PAYSTACK_KEY_HERE') {
+                this.showToast('Paystack integration ready. Add your public key to activate.', 'info');
+                return;
+            }
+            if (this.state.selectedPaymentMethod === 'stripe' && this.config.STRIPE_PUBLIC_KEY !== 'pk_test_YOUR_STRIPE_KEY_HERE') {
+                this.showToast('Stripe integration ready. Add your public key to activate.', 'info');
+                return;
+            }
+            this.closePayment();
+            this.showToast(`Payment successful! Welcome to ${this.state.selectedPlan === 'pro' ? 'Student Pro' : 'Student Premium'}!`, 'success');
+            this.goHome();
+        },
+
+        // ==================== NAVIGATION ====================
+        goHome() {
+            this.hideAllPages();
+            document.getElementById('homePage').classList.remove('hidden');
+            this.state.currentPage = 'home';
+            window.scrollTo(0, 0);
+            document.title = 'SA Student Hub - Trusted News for Students';
+            this.renderAPINews();
+            this.renderManualArticles();
+        },
+
+        hideAllPages() {
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('articlePage').classList.add('hidden');
+            document.getElementById('authPage').classList.add('hidden');
+            document.getElementById('subscriptionPage').classList.add('hidden');
+            document.getElementById('adminPage').classList.add('hidden');
+        },
+
+        showDiscover() {
+            this.showToast('Discover: Personalized content coming soon!', 'info');
+        },
+
+        showSaved() {
+            if (this.state.savedArticles.length === 0) {
+                this.showToast('No saved articles yet. Click the bookmark icon to save!', 'info');
+                return;
+            }
+            this.showToast(`You have ${this.state.savedArticles.length} saved articles`, 'info');
+        },
+
+        showProfile() {
+            if (this.state.user) {
+                this.showToast(`Logged in as ${this.state.user.name || this.state.user.email}`, 'info');
+            } else {
+                this.showAuth('signin');
+            }
+        },
+
+        showContact() {
+            this.showToast('Contact: admin@sastudenthub.co.za', 'info');
+        },
+
+        // ==================== ARTICLE ACTIONS ====================
+        toggleSave(id) {
+            const index = this.state.savedArticles.indexOf(id);
+            if (index > -1) {
+                this.state.savedArticles.splice(index, 1);
+                this.showToast('Article removed from saved', 'info');
+            } else {
+                this.state.savedArticles.push(id);
+                this.showToast('Article saved!', 'success');
+            }
+            localStorage.setItem('savedArticles', JSON.stringify(this.state.savedArticles));
+            this.renderManualArticles();
+            this.renderAPINews();
+        },
+
+        saveCurrentArticle() {
+            if (this.state.currentArticle) {
+                this.toggleSave(this.state.currentArticle.id);
+            }
+        },
+
+        shareArticle() {
+            if (navigator.share && this.state.currentArticle) {
+                navigator.share({
+                    title: this.state.currentArticle.title,
+                    text: this.state.currentArticle.excerpt,
+                    url: window.location.href
+                });
+            } else {
+                this.copyLink();
+            }
+        },
+
+        shareTo(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(this.state.currentArticle ? this.state.currentArticle.title : 'SA Student Hub');
+            let shareUrl = '';
+            if (platform === 'twitter') shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+            if (platform === 'facebook') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            if (platform === 'whatsapp') shareUrl = `https://wa.me/?text=${text}%20${url}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        },
+
+        copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                this.showToast('Link copied to clipboard!', 'success');
+            });
+        },
+
+        // ==================== LANGUAGE ====================
+        switchLang(lang) {
+            this.state.language = lang;
+            localStorage.setItem('lang', lang);
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.lang === lang);
+            });
+            if (lang === 'zu') {
+                document.querySelectorAll('.logo-text').forEach(el => el.innerHTML = 'I-Student <span>Hub</span>');
+                const signinBtn = document.querySelector('.btn-outline');
+                if (signinBtn && signinBtn.textContent.includes('Sign')) signinBtn.textContent = 'Ngena';
+                const subBtn = document.querySelector('.btn-primary');
+                if (subBtn && subBtn.textContent.includes('Subscribe')) subBtn.textContent = 'Bhalisa';
+                this.showToast('Ulimi lushintshelwe kwisiZulu', 'success');
+            } else {
+                document.querySelectorAll('.logo-text').forEach(el => el.innerHTML = 'Student <span>Hub</span>');
+                const signinBtn = document.querySelector('.btn-outline');
+                if (signinBtn && signinBtn.textContent.includes('Ngena')) signinBtn.textContent = 'Sign in';
+                const subBtn = document.querySelector('.btn-primary');
+                if (subBtn && subBtn.textContent.includes('Bhalisa')) subBtn.textContent = 'Subscribe';
+                this.showToast('Language switched to English', 'success');
+            }
+        },
+
+        // ==================== UTILITIES ====================
+        formatTime(date) {
+            if (!date) return 'Just now';
+            const now = new Date();
+            const diff = (now - date) / 1000;
+            if (diff < 60) return 'Just now';
+            if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+            if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+            if (diff < 604800) return Math.floor(diff / 86400) + 'd ago';
+            return date.toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' });
+        },
+
+        showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            const icons = {
+                success: '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="#00b894" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>',
+                error: '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+                info: '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="#0984e3" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+            };
+            toast.innerHTML = `
+                ${icons[type]}
+                <div class="toast-content">
+                    <div class="toast-title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            `;
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+</html>
