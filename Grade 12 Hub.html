@@ -1,0 +1,3279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Grade 12 Hub - Premium Study Platform</title>
+    <meta name="description" content="South Africa's #1 Grade 12 study platform. Free past papers, memos, study guides, and exam tips for Matric students.">
+    <meta name="keywords" content="Grade 12, Matric, South Africa, past papers, study guides, NSC, DBE, exam tips">
+    <meta property="og:title" content="SA Grade 12 Hub - Premium Study Platform">
+    <meta property="og:description" content="Free Grade 12 study resources, past papers, and exam tips for South African learners.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #e91e63;
+            --primary-dark: #c2185b;
+            --primary-light: #f8bbd9;
+            --secondary: #1a1a2e;
+            --dark: #0f0f1a;
+            --darker: #0a0a12;
+            --light: #f5f5f7;
+            --white: #ffffff;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--light); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+        .header.scrolled { box-shadow: var(--shadow-lg); }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .logo-icon {
+            width: 42px; height: 42px;
+            background: var(--primary);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 18px;
+        }
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+        .logo-text span { color: var(--primary); }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-link {
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(233, 30, 99, 0.4);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--gray-light);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--gray);
+            padding: 8px 12px;
+        }
+        .btn-ghost:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .btn-sm { padding: 6px 16px; font-size: 13px; }
+        .btn-full { width: 100%; justify-content: center; }
+
+        .search-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        .search-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            width: 40px; height: 40px;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+
+        .hero {
+            margin-top: 70px;
+            background: var(--secondary);
+            position: relative;
+            overflow: hidden;
+            padding: 80px 24px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(233, 30, 99, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(233, 30, 99, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(233, 30, 99, 0.08) 0%, transparent 50%);
+        }
+        .hero-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(233, 30, 99, 0.2);
+            color: var(--primary-light);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+        .hero-badge .live-dot {
+            width: 8px; height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: livePulse 2s infinite;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero-title span { color: var(--primary); }
+        .hero-subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 32px;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        .hero-stat { text-align: left; }
+        .hero-stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+        }
+        .hero-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hero-search {
+            position: relative;
+            max-width: 500px;
+        }
+        .hero-search input {
+            width: 100%;
+            padding: 18px 24px 18px 52px;
+            border-radius: var(--radius-xl);
+            border: 2px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        .hero-search input::placeholder { color: rgba(255,255,255,0.5); }
+        .hero-search input:focus {
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.1);
+        }
+        .hero-search i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: 18px;
+        }
+        .hero-search-btn {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .hero-search-btn:hover { background: var(--primary-dark); }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            width: 280px;
+            position: absolute;
+            transition: var(--transition);
+        }
+        .hero-card-1 {
+            top: 0;
+            right: 60px;
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero-card-2 {
+            bottom: 40px;
+            left: 40px;
+            animation: float 6s ease-in-out infinite 1s;
+        }
+        .hero-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .hero-card-icon {
+            width: 40px; height: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .hero-card-icon.pink {
+            background: rgba(233, 30, 99, 0.2);
+            color: var(--primary);
+        }
+        .hero-card-icon.blue {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+        .hero-card-title {
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .hero-card-subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 12px;
+        }
+        .hero-card-progress {
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 100px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .hero-card-progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 100px;
+            width: 75%;
+        }
+        .hero-card-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .hero-card-tag {
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border-radius: 100px;
+            font-size: 11px;
+        }
+
+        .section {
+            padding: 80px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+        .section-title span { color: var(--primary); }
+        .section-subtitle {
+            color: var(--gray);
+            margin-top: 8px;
+            font-size: 16px;
+        }
+        .section-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .section-link:hover { gap: 12px; }
+
+        .trending-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .trending-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid var(--gray-light);
+        }
+        .trending-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        .trending-card-image {
+            height: 180px;
+            background: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        .trending-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .trending-card:hover .trending-card-image img { transform: scale(1.05); }
+        .trending-card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge-bursaries { background: #fef3c7; color: #92400e; }
+        .badge-jobs { background: #dbeafe; color: #1e40af; }
+        .badge-news { background: #fce7f3; color: #9d174d; }
+        .badge-tips { background: #d1fae5; color: #065f46; }
+        .badge-papers { background: #e0e7ff; color: #3730a3; }
+        .trending-card-content { padding: 20px; }
+        .trending-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .trending-card-time {
+            font-size: 13px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .trending-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .trending-card-excerpt {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .trending-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-light);
+        }
+        .trending-card-readtime {
+            font-size: 13px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .trending-card-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .trending-card-action {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+            color: var(--gray);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .trending-card-action:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .subjects-section {
+            background: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        .subjects-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
+        }
+        .subjects-section .section-title { color: white; }
+        .subjects-section .section-subtitle { color: rgba(255,255,255,0.6); }
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            position: relative;
+            z-index: 2;
+        }
+        .subject-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+        .subject-card:hover::before { transform: scaleX(1); }
+        .subject-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+            border-color: rgba(233, 30, 99, 0.3);
+        }
+        .subject-icon {
+            width: 56px; height: 56px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+            background: rgba(233, 30, 99, 0.2);
+            color: var(--primary);
+        }
+        .subject-name {
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        .subject-count {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .tool-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+        .tool-card:hover::after { transform: scaleX(1); }
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        .tool-icon {
+            width: 60px; height: 60px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .tool-icon.pink { background: #fce7f3; color: #be185d; }
+        .tool-icon.blue { background: #dbeafe; color: #1e40af; }
+        .tool-icon.green { background: #d1fae5; color: #065f46; }
+        .tool-icon.orange { background: #ffedd5; color: #9a3412; }
+        .tool-icon.purple { background: #f3e8ff; color: #6b21a8; }
+        .tool-icon.teal { background: #ccfbf1; color: #0f766e; }
+        .tool-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        .tool-description {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .countdown-section {
+            background: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .countdown-item { text-align: center; }
+        .countdown-number {
+            font-size: 56px;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+        }
+        .countdown-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+        .countdown-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        .countdown-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+        .countdown-title p { opacity: 0.9; }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .tip-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .tip-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .tip-number {
+            width: 48px; height: 48px;
+            border-radius: var(--radius);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .tip-content h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 6px;
+        }
+        .tip-content p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 24px 40px;
+        }
+        .footer-inner { max-width: 1400px; margin: 0 auto; }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+        .footer-brand { max-width: 300px; }
+        .footer-brand .logo-text {
+            color: white;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .footer-founder {
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            border-left: 3px solid var(--primary);
+        }
+        .footer-founder-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 4px;
+        }
+        .footer-founder-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .footer-links a:hover { color: var(--primary); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-copyright {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+        .footer-copyright span { color: var(--primary); }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+        .footer-social a {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-social a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0; right: 0;
+            background: white;
+            border-top: 1px solid var(--gray-light);
+            padding: 8px 0;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        }
+        .mobile-nav-inner {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 11px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            background: none;
+        }
+        .mobile-nav-item i { font-size: 20px; }
+        .mobile-nav-item.active { color: var(--primary); }
+        .mobile-nav-item.menu-btn {
+            background: var(--primary);
+            color: white;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            margin-top: -20px;
+            box-shadow: 0 4px 14px rgba(233, 30, 99, 0.4);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal {
+            background: white;
+            border-radius: var(--radius-xl);
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-xl);
+        }
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+        .modal-header {
+            padding: 24px 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        .modal-close {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        .modal-close:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .modal-body { padding: 24px; }
+        .form-group { margin-bottom: 20px; }
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--radius);
+            font-size: 15px;
+            transition: var(--transition);
+            outline: none;
+            font-family: inherit;
+        }
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+        }
+        .form-input::placeholder { color: var(--gray); }
+        .form-error {
+            color: var(--danger);
+            font-size: 13px;
+            margin-top: 6px;
+            display: none;
+        }
+        .form-error.show { display: block; }
+        .modal-footer { padding: 0 24px 24px; }
+        .modal-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        .modal-divider::before, .modal-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gray-light);
+        }
+        .modal-switch {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+        .modal-switch a {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .search-modal .modal { max-width: 700px; }
+        .search-input-wrapper {
+            position: relative;
+            margin-bottom: 24px;
+        }
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 16px 24px 16px 52px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--radius-xl);
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+        }
+        .search-input-wrapper input:focus { border-color: var(--primary); }
+        .search-input-wrapper i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        .search-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .search-filter {
+            padding: 8px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--gray-light);
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray);
+        }
+        .search-filter:hover, .search-filter.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .search-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .search-result-item {
+            padding: 16px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .search-result-item:hover { background: var(--light); }
+        .search-result-icon {
+            width: 44px; height: 44px;
+            border-radius: var(--radius);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .search-result-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 2px;
+        }
+        .search-result-info p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+        .search-result-badge {
+            margin-left: auto;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .user-menu { position: relative; }
+        .user-menu-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px 6px 6px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            background: none;
+        }
+        .user-menu-trigger:hover { background: var(--light); }
+        .user-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        .user-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            min-width: 220px;
+            padding: 8px;
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            border: 1px solid var(--gray-light);
+        }
+        .user-dropdown.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .user-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            color: var(--secondary);
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+        .user-dropdown-item:hover { background: var(--light); }
+        .user-dropdown-item i {
+            color: var(--gray);
+            width: 20px;
+        }
+        .user-dropdown-divider {
+            height: 1px;
+            background: var(--gray-light);
+            margin: 8px 0;
+        }
+
+        .subject-modal .modal { max-width: 800px; }
+        .subject-modal-header {
+            background: var(--secondary);
+            padding: 40px;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .subject-modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 80% 50%, rgba(233, 30, 99, 0.3) 0%, transparent 60%);
+        }
+        .subject-modal-icon {
+            width: 64px; height: 64px;
+            border-radius: var(--radius);
+            background: rgba(233, 30, 99, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .subject-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 800;
+            position: relative;
+        }
+        .subject-modal-subtitle {
+            opacity: 0.7;
+            margin-top: 4px;
+            position: relative;
+        }
+        .subject-tabs {
+            display: flex;
+            gap: 4px;
+            padding: 0 24px;
+            border-bottom: 1px solid var(--gray-light);
+            background: white;
+        }
+        .subject-tab {
+            padding: 16px 20px;
+            border: none;
+            background: none;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--gray);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        .subject-tab.active { color: var(--primary); }
+        .subject-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--primary);
+        }
+        .subject-tab-content {
+            padding: 24px;
+            display: none;
+        }
+        .subject-tab-content.active { display: block; }
+        .resource-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .resource-item:hover {
+            background: var(--light);
+            border-color: var(--primary-light);
+        }
+        .resource-icon {
+            width: 44px; height: 44px;
+            border-radius: var(--radius);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .resource-info { flex: 1; }
+        .resource-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 2px;
+        }
+        .resource-info p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+        .resource-action {
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            background: var(--primary);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .resource-action:hover { background: var(--primary-dark); }
+
+        .toast-container {
+            position: fixed;
+            top: 90px;
+            right: 24px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .toast {
+            background: white;
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 300px;
+            border-left: 4px solid var(--primary);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .toast.show { transform: translateX(0); }
+        .toast-icon {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .toast-content h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        .toast-content p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1600;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mobile-menu-close {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .mobile-menu-links { padding: 16px; }
+        .mobile-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border-radius: var(--radius);
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-size: 15px;
+        }
+        .mobile-menu-link:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+        .mobile-menu-link i {
+            width: 24px;
+            color: var(--gray);
+        }
+
+        .page-section {
+            display: none;
+            padding-top: 70px;
+            min-height: 100vh;
+        }
+        .page-section.active { display: block; }
+        .page-hero {
+            background: var(--secondary);
+            padding: 60px 24px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(233, 30, 99, 0.2) 0%, transparent 60%);
+        }
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 800;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .page-hero p {
+            opacity: 0.7;
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .papers-filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+        .papers-filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .papers-filter-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .papers-filter-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--radius);
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+            background: white;
+            cursor: pointer;
+        }
+        .papers-filter-group select:focus { border-color: var(--primary); }
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .paper-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .paper-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .paper-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .paper-card-subject {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .paper-card-year {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gray-light);
+            line-height: 1;
+        }
+        .paper-card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        .paper-card-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .paper-card-meta-item {
+            font-size: 13px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .paper-card-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .paper-card-actions .btn {
+            flex: 1;
+            justify-content: center;
+            font-size: 13px;
+            padding: 10px 16px;
+        }
+
+        .guide-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .guide-category {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .guide-category:hover { box-shadow: var(--shadow-lg); }
+        .guide-category-header {
+            padding: 24px;
+            background: var(--secondary);
+            color: white;
+        }
+        .guide-category-header i {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .guide-category-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .guide-category-list { padding: 16px; }
+        .guide-category-item {
+            padding: 12px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .guide-category-item:hover { background: var(--light); }
+        .guide-category-item i { color: var(--primary); }
+
+        .about-content { max-width: 800px; margin: 0 auto; }
+        .about-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-light);
+            box-shadow: var(--shadow);
+        }
+        .about-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: var(--secondary);
+        }
+        .about-card p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .team-member { text-align: center; }
+        .team-member-avatar {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 12px;
+        }
+        .team-member h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        .team-member p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .contact-info-icon {
+            width: 48px; height: 48px;
+            border-radius: var(--radius);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .contact-info-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 2px;
+        }
+        .contact-info-item p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .share-btn {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+        .share-btn:hover { transform: translateY(-2px); }
+        .share-btn.whatsapp { background: #25d366; }
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.twitter { background: #000; }
+        .share-btn.tiktok { background: #000; }
+        .share-btn.copy { background: var(--gray); }
+
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-stats { justify-content: center; }
+            .hero-search { margin: 0 auto; }
+            .hero-visual { display: none; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .header-actions .btn-outline { display: none; }
+            .hero { padding: 60px 20px; }
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 16px; }
+            .hero-stats { gap: 20px; }
+            .hero-stat-number { font-size: 24px; }
+            .section { padding: 60px 20px; }
+            .section-title { font-size: 28px; }
+            .trending-grid { grid-template-columns: 1fr; }
+            .subjects-grid { grid-template-columns: repeat(2, 1fr); }
+            .tools-grid { grid-template-columns: 1fr; }
+            .tips-grid { grid-template-columns: 1fr; }
+            .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+            .countdown-number { font-size: 40px; }
+            .footer-top { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .mobile-nav { display: block; }
+            body { padding-bottom: 70px; }
+            .papers-filters { flex-direction: column; }
+            .papers-grid { grid-template-columns: 1fr; }
+            .guide-categories { grid-template-columns: 1fr; }
+            .page-hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a class="logo" onclick="navigateTo('home')">
+                <div class="logo-icon">SA</div>
+                <div class="logo-text">Grade <span>12</span> Hub</div>
+            </a>
+            <nav class="nav-desktop">
+                <button class="nav-link active" onclick="navigateTo('home')" data-page="home">Home</button>
+                <button class="nav-link" onclick="navigateTo('subjects')" data-page="subjects">Subjects</button>
+                <button class="nav-link" onclick="navigateTo('papers')" data-page="papers">Past Papers</button>
+                <button class="nav-link" onclick="navigateTo('guides')" data-page="guides">Study Guides</button>
+                <button class="nav-link" onclick="navigateTo('tips')" data-page="tips">Exam Tips</button>
+                <button class="nav-link" onclick="navigateTo('about')" data-page="about">About</button>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn" onclick="openSearchModal()" title="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="authButtons">
+                    <button class="btn btn-outline btn-sm" onclick="openLoginModal()">Sign In</button>
+                </div>
+                <div class="user-menu" id="userMenu" style="display:none;">
+                    <button class="user-menu-trigger" onclick="toggleUserDropdown()">
+                        <div class="user-avatar" id="userAvatar">U</div>
+                        <span class="user-name" id="userName">User</span>
+                        <i class="fas fa-chevron-down" style="font-size:12px;color:var(--gray);"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <button class="user-dropdown-item" onclick="navigateTo('profile')">
+                            <i class="fas fa-user"></i> My Profile
+                        </button>
+                        <button class="user-dropdown-item" onclick="navigateTo('bookmarks')">
+                            <i class="fas fa-bookmark"></i> Saved Resources
+                        </button>
+                        <button class="user-dropdown-item" onclick="navigateTo('progress')">
+                            <i class="fas fa-chart-line"></i> My Progress
+                        </button>
+                        <div class="user-dropdown-divider"></div>
+                        <button class="user-dropdown-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                        </button>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" onclick="openMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo-text" style="font-size:20px;">Grade <span style="color:var(--primary);">12</span> Hub</div>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <button class="mobile-menu-link" onclick="navigateTo('home'); closeMobileMenu();">
+                <i class="fas fa-home"></i> Home
+            </button>
+            <button class="mobile-menu-link" onclick="navigateTo('subjects'); closeMobileMenu();">
+                <i class="fas fa-book"></i> Subjects
+            </button>
+            <button class="mobile-menu-link" onclick="navigateTo('papers'); closeMobileMenu();">
+                <i class="fas fa-file-alt"></i> Past Papers
+            </button>
+            <button class="mobile-menu-link" onclick="navigateTo('guides'); closeMobileMenu();">
+                <i class="fas fa-graduation-cap"></i> Study Guides
+            </button>
+            <button class="mobile-menu-link" onclick="navigateTo('tips'); closeMobileMenu();">
+                <i class="fas fa-lightbulb"></i> Exam Tips
+            </button>
+            <button class="mobile-menu-link" onclick="navigateTo('about'); closeMobileMenu();">
+                <i class="fas fa-info-circle"></i> About Us
+            </button>
+            <button class="mobile-menu-link" onclick="navigateTo('contact'); closeMobileMenu();">
+                <i class="fas fa-envelope"></i> Contact
+            </button>
+            <div style="height:1px;background:var(--gray-light);margin:16px 0;"></div>
+            <button class="mobile-menu-link" onclick="openLoginModal(); closeMobileMenu();">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page-section active">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-grid"></div>
+            <div class="hero-content">
+                <div class="animate-fade-in-up">
+                    <div class="hero-badge">
+                        <span class="live-dot"></span>
+                        Matric 2026 is Here
+                    </div>
+                    <h1 class="hero-title">Your <span>Grade 12</span><br>Success Starts Here</h1>
+                    <p class="hero-subtitle">South Africa's most trusted study platform. Access past papers, study guides, exam tips, and memorisable notes — all in one place.</p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">15+</div>
+                            <div class="hero-stat-label">Subjects</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">500+</div>
+                            <div class="hero-stat-label">Past Papers</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">50K+</div>
+                            <div class="hero-stat-label">Students</div>
+                        </div>
+                    </div>
+                    <div class="hero-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search subjects, papers, topics..." id="heroSearchInput" onkeypress="if(event.key==='Enter')performSearch(this.value)">
+                        <button class="hero-search-btn" onclick="performSearch(document.getElementById('heroSearchInput').value)">Search</button>
+                    </div>
+                </div>
+                <div class="hero-visual animate-fade-in-up delay-2">
+                    <div class="hero-card hero-card-1">
+                        <div class="hero-card-header">
+                            <div class="hero-card-icon pink"><i class="fas fa-book-open"></i></div>
+                            <div>
+                                <div class="hero-card-title">Mathematics</div>
+                                <div class="hero-card-subtitle">Paper 1 & 2</div>
+                            </div>
+                        </div>
+                        <div class="hero-card-progress"><div class="hero-card-progress-bar"></div></div>
+                        <div class="hero-card-tags">
+                            <span class="hero-card-tag">Algebra</span>
+                            <span class="hero-card-tag">Calculus</span>
+                            <span class="hero-card-tag">Geometry</span>
+                        </div>
+                    </div>
+                    <div class="hero-card hero-card-2">
+                        <div class="hero-card-header">
+                            <div class="hero-card-icon blue"><i class="fas fa-flask"></i></div>
+                            <div>
+                                <div class="hero-card-title">Physical Sciences</div>
+                                <div class="hero-card-subtitle">Physics & Chemistry</div>
+                            </div>
+                        </div>
+                        <div class="hero-card-progress"><div class="hero-card-progress-bar" style="width:60%"></div></div>
+                        <div class="hero-card-tags">
+                            <span class="hero-card-tag">Mechanics</span>
+                            <span class="hero-card-tag">Organic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Now -->
+        <section class="section">
+            <div class="section-header animate-fade-in-up">
+                <div>
+                    <h2 class="section-title"><i class="fas fa-chart-line" style="color:var(--primary);margin-right:12px;"></i>Trending <span>Now</span></h2>
+                    <p class="section-subtitle">Latest updates and most popular resources this week</p>
+                </div>
+                <a class="section-link" onclick="navigateTo('papers')">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="trending-grid" id="trendingGrid"></div>
+        </section>
+
+        <!-- Subjects -->
+        <section class="section subjects-section">
+            <div class="section-header animate-fade-in-up">
+                <div>
+                    <h2 class="section-title">All <span>Subjects</span></h2>
+                    <p class="section-subtitle">Comprehensive coverage of every Grade 12 NSC subject</p>
+                </div>
+                <a class="section-link" onclick="navigateTo('subjects')" style="color:var(--primary-light);">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="subjects-grid" id="subjectsGrid"></div>
+        </section>
+
+        <!-- Study Tools -->
+        <section class="section">
+            <div class="section-header animate-fade-in-up">
+                <div>
+                    <h2 class="section-title">Study <span>Tools</span></h2>
+                    <p class="section-subtitle">Everything you need to ace your exams</p>
+                </div>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card animate-fade-in-up delay-1" onclick="navigateTo('papers')">
+                    <div class="tool-icon pink"><i class="fas fa-file-alt"></i></div>
+                    <h3 class="tool-title">Past Exam Papers</h3>
+                    <p class="tool-description">Access NSC and IEB past papers from 2015-2025 with detailed memos and marking guidelines.</p>
+                    <span class="tool-link">Browse Papers <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="tool-card animate-fade-in-up delay-2" onclick="navigateTo('guides')">
+                    <div class="tool-icon blue"><i class="fas fa-book-open"></i></div>
+                    <h3 class="tool-title">Study Guides</h3>
+                    <p class="tool-description">Comprehensive topic summaries, formula sheets, and key concept explanations for every subject.</p>
+                    <span class="tool-link">View Guides <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="tool-card animate-fade-in-up delay-3" onclick="navigateTo('tips')">
+                    <div class="tool-icon green"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="tool-title">Exam Tips</h3>
+                    <p class="tool-description">Proven strategies for time management, question analysis, and maximising marks in every paper.</p>
+                    <span class="tool-link">Get Tips <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="tool-card animate-fade-in-up delay-4" onclick="openFlashcards()">
+                    <div class="tool-icon orange"><i class="fas fa-clone"></i></div>
+                    <h3 class="tool-title">Flashcards</h3>
+                    <p class="tool-description">Interactive memorisation cards for key terms, definitions, and formulas across all subjects.</p>
+                    <span class="tool-link">Start Learning <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="tool-card animate-fade-in-up delay-5" onclick="openTimer()">
+                    <div class="tool-icon purple"><i class="fas fa-clock"></i></div>
+                    <h3 class="tool-title">Exam Timer</h3>
+                    <p class="tool-description">Practice under exam conditions with our customisable countdown timer for each paper type.</p>
+                    <span class="tool-link">Set Timer <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="tool-card animate-fade-in-up delay-5" onclick="navigateTo('progress')">
+                    <div class="tool-icon teal"><i class="fas fa-chart-pie"></i></div>
+                    <h3 class="tool-title">Progress Tracker</h3>
+                    <p class="tool-description">Track your study progress, set goals, and monitor your preparation across all subjects.</p>
+                    <span class="tool-link">Track Now <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Countdown -->
+        <section class="section countdown-section">
+            <div class="countdown-title animate-fade-in-up">
+                <h2>Matric Final Exams Countdown</h2>
+                <p>Stay focused. Every day counts.</p>
+            </div>
+            <div class="countdown-grid" id="countdownGrid">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="countdown-days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="countdown-hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="countdown-minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="countdown-seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="section">
+            <div class="section-header animate-fade-in-up">
+                <div>
+                    <h2 class="section-title">Top Exam <span>Tips</span></h2>
+                    <p class="section-subtitle">Essential strategies from top-performing matriculants</p>
+                </div>
+                <a class="section-link" onclick="navigateTo('tips')">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="tips-grid" id="tipsGrid"></div>
+        </section>
+    </div>
+
+    <!-- SUBJECTS PAGE -->
+    <div id="page-subjects" class="page-section">
+        <div class="page-hero">
+            <h1>All <span style="color:var(--primary);">Subjects</span></h1>
+            <p>Browse every Grade 12 subject and access curated resources, past papers, and study guides.</p>
+        </div>
+        <div class="section">
+            <div class="subjects-grid" id="allSubjectsGrid" style="position:relative;z-index:2;"></div>
+        </div>
+    </div>
+
+    <!-- PAPERS PAGE -->
+    <div id="page-papers" class="page-section">
+        <div class="page-hero">
+            <h1>Past <span style="color:var(--primary);">Papers</span></h1>
+            <p>Access official NSC and IEB past exam papers with memos. Filter by subject, year, and paper type.</p>
+        </div>
+        <div class="section">
+            <div class="papers-filters">
+                <div class="papers-filter-group">
+                    <label>Subject</label>
+                    <select id="paperFilterSubject" onchange="filterPapers()">
+                        <option value="">All Subjects</option>
+                    </select>
+                </div>
+                <div class="papers-filter-group">
+                    <label>Year</label>
+                    <select id="paperFilterYear" onchange="filterPapers()">
+                        <option value="">All Years</option>
+                    </select>
+                </div>
+                <div class="papers-filter-group">
+                    <label>Paper Type</label>
+                    <select id="paperFilterType" onchange="filterPapers()">
+                        <option value="">All Types</option>
+                        <option value="Paper 1">Paper 1</option>
+                        <option value="Paper 2">Paper 2</option>
+                        <option value="Memo">Memo</option>
+                    </select>
+                </div>
+                <div class="papers-filter-group">
+                    <label>Province</label>
+                    <select id="paperFilterProvince" onchange="filterPapers()">
+                        <option value="">All Provinces</option>
+                        <option value="National">National (DBE)</option>
+                        <option value="IEB">IEB</option>
+                        <option value="Eastern Cape">Eastern Cape</option>
+                        <option value="Free State">Free State</option>
+                        <option value="Gauteng">Gauteng</option>
+                        <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                        <option value="Limpopo">Limpopo</option>
+                        <option value="Mpumalanga">Mpumalanga</option>
+                        <option value="Northern Cape">Northern Cape</option>
+                        <option value="North West">North West</option>
+                        <option value="Western Cape">Western Cape</option>
+                    </select>
+                </div>
+            </div>
+            <div class="papers-grid" id="papersGrid"></div>
+        </div>
+    </div>
+
+    <!-- STUDY GUIDES PAGE -->
+    <div id="page-guides" class="page-section">
+        <div class="page-hero">
+            <h1>Study <span style="color:var(--primary);">Guides</span></h1>
+            <p>Comprehensive topic summaries, formula sheets, and memorisable notes for every subject.</p>
+        </div>
+        <div class="section">
+            <div class="guide-categories" id="guidesGrid"></div>
+        </div>
+    </div>
+
+    <!-- EXAM TIPS PAGE -->
+    <div id="page-tips" class="page-section">
+        <div class="page-hero">
+            <h1>Exam <span style="color:var(--primary);">Tips</span></h1>
+            <p>Proven strategies and advice to help you excel in your Matric examinations.</p>
+        </div>
+        <div class="section">
+            <div class="tips-grid" id="allTipsGrid"></div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="page-about" class="page-section">
+        <div class="page-hero">
+            <h1>About <span style="color:var(--primary);">Us</span></h1>
+            <p>Empowering South African learners to achieve academic excellence.</p>
+        </div>
+        <div class="section about-content">
+            <div class="about-card">
+                <h2>Our Mission</h2>
+                <p>SA Grade 12 Hub was created with a single purpose: to democratise access to quality education resources for every South African Matric student. We believe that every learner deserves the tools to succeed, regardless of their background or circumstances.</p>
+                <p>Our platform curates the best official resources from the Department of Basic Education, Independent Examinations Board, and other trusted educational institutions — all in one convenient, easy-to-navigate space.</p>
+            </div>
+            <div class="about-card">
+                <h2>What We Offer</h2>
+                <p><strong>Official Past Papers:</strong> Direct links to DBE and IEB past exam papers and memoranda from 2015 to 2025, organised by subject and year.</p>
+                <p><strong>Study Guides:</strong> Comprehensive topic summaries, formula sheets, and key concept explanations written by experienced educators.</p>
+                <p><strong>Exam Tips:</strong> Proven strategies for time management, question analysis, and mark maximisation from top-performing students and teachers.</p>
+                <p><strong>Interactive Tools:</strong> Flashcards, exam timers, and progress trackers to make your study sessions more effective.</p>
+            </div>
+            <div class="about-card">
+                <h2>Our Team</h2>
+                <p>We are a passionate team of educators, developers, and former Matric students dedicated to helping the next generation of South African leaders succeed.</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-member-avatar"><i class="fas fa-user"></i></div>
+                        <h4>Education Team</h4>
+                        <p>Qualified Teachers</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar"><i class="fas fa-code"></i></div>
+                        <h4>Development Team</h4>
+                        <p>Software Engineers</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar"><i class="fas fa-pencil-alt"></i></div>
+                        <h4>Content Team</h4>
+                        <p>Subject Specialists</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar"><i class="fas fa-heart"></i></div>
+                        <h4>Community</h4>
+                        <p>Student Volunteers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="page-contact" class="page-section">
+        <div class="page-hero">
+            <h1>Contact <span style="color:var(--primary);">Us</span></h1>
+            <p>Have questions or suggestions? We'd love to hear from you.</p>
+        </div>
+        <div class="section">
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>info@sagrade12hub.co.za</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+27 (0) 11 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Visit Us</h4>
+                            <p>Johannesburg, South Africa</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+27 (0) 60 123 4567</p>
+                        </div>
+                    </div>
+                    <div style="margin-top:32px;">
+                        <h3 style="margin-bottom:16px;font-size:18px;">Follow Us</h3>
+                        <div class="footer-social">
+                            <a href="#" onclick="showToast('Twitter link coming soon!', 'info')"><i class="fab fa-twitter"></i></a>
+                            <a href="#" onclick="showToast('Instagram link coming soon!', 'info')"><i class="fab fa-instagram"></i></a>
+                            <a href="#" onclick="showToast('LinkedIn link coming soon!', 'info')"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" onclick="showToast('TikTok link coming soon!', 'info')"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" onclick="showToast('Facebook link coming soon!', 'info')"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-card" style="margin:0;">
+                    <h2 style="font-size:22px;margin-bottom:20px;">Send us a Message</h2>
+                    <form onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-input" placeholder="How can we help?" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-input" rows="4" placeholder="Your message..." required style="resize:vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="page-profile" class="page-section">
+        <div class="page-hero">
+            <h1>My <span style="color:var(--primary);">Profile</span></h1>
+            <p>Manage your account and study preferences.</p>
+        </div>
+        <div class="section">
+            <div class="about-card" style="max-width:600px;margin:0 auto;text-align:center;">
+                <div class="user-avatar" style="width:80px;height:80px;font-size:32px;margin:0 auto 16px;">U</div>
+                <h2 id="profileName" style="font-size:24px;">User</h2>
+                <p id="profileEmail" style="color:var(--gray);">user@example.com</p>
+                <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;">
+                    <button class="btn btn-outline" onclick="showToast('Feature coming soon!', 'info')">Edit Profile</button>
+                    <button class="btn btn-primary" onclick="logout()">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOOKMARKS PAGE -->
+    <div id="page-bookmarks" class="page-section">
+        <div class="page-hero">
+            <h1>Saved <span style="color:var(--primary);">Resources</span></h1>
+            <p>Your bookmarked papers, guides, and tips.</p>
+        </div>
+        <div class="section">
+            <div class="papers-grid" id="bookmarksGrid">
+                <div style="grid-column:1/-1;text-align:center;padding:60px 20px;">
+                    <i class="fas fa-bookmark" style="font-size:48px;color:var(--gray-light);margin-bottom:16px;"></i>
+                    <h3 style="color:var(--secondary);margin-bottom:8px;">No saved resources yet</h3>
+                    <p style="color:var(--gray);">Bookmark papers and guides to access them quickly here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROGRESS PAGE -->
+    <div id="page-progress" class="page-section">
+        <div class="page-hero">
+            <h1>My <span style="color:var(--primary);">Progress</span></h1>
+            <p>Track your study journey and stay on top of your goals.</p>
+        </div>
+        <div class="section">
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon pink"><i class="fas fa-file-alt"></i></div>
+                    <h3 class="tool-title">Papers Completed</h3>
+                    <p class="tool-description" style="font-size:32px;font-weight:800;color:var(--primary);">0</p>
+                    <p class="tool-description">Keep practicing to improve your score!</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon blue"><i class="fas fa-clock"></i></div>
+                    <h3 class="tool-title">Study Hours</h3>
+                    <p class="tool-description" style="font-size:32px;font-weight:800;color:var(--primary);">0</p>
+                    <p class="tool-description">Track your daily study sessions.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon green"><i class="fas fa-check-circle"></i></div>
+                    <h3 class="tool-title">Topics Mastered</h3>
+                    <p class="tool-description" style="font-size:32px;font-weight:800;color:var(--primary);">0</p>
+                    <p class="tool-description">Mark topics as complete as you learn them.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo-text" style="font-size:28px;">Grade <span>12</span> Hub</div>
+                    <p>Trusted news, opportunities, and resources for South African Grade 12 students preparing for Matric examinations.</p>
+                    <div class="footer-founder">
+                        <div class="footer-founder-label">Built For</div>
+                        <div class="footer-founder-name">South African Students</div>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a onclick="navigateTo('home')">Top Stories</a></li>
+                        <li><a onclick="navigateTo('papers')">Past Papers</a></li>
+                        <li><a onclick="navigateTo('guides')">Study Guides</a></li>
+                        <li><a onclick="navigateTo('tips')">Exam Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a onclick="navigateTo('about')">About Us</a></li>
+                        <li><a onclick="navigateTo('contact')">Contact</a></li>
+                        <li><a onclick="showToast('Careers page coming soon!', 'info')">Careers</a></li>
+                        <li><a onclick="showToast('Advertise page coming soon!', 'info')">Advertise</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a onclick="showToast('Privacy Policy coming soon!', 'info')">Privacy Policy</a></li>
+                        <li><a onclick="showToast('Terms of Service coming soon!', 'info')">Terms of Service</a></li>
+                        <li><a onclick="showToast('Cookie Policy coming soon!', 'info')">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showToast('Twitter link coming soon!', 'info')">Twitter / X</a></li>
+                        <li><a href="#" onclick="showToast('Instagram link coming soon!', 'info')">Instagram</a></li>
+                        <li><a href="#" onclick="showToast('LinkedIn link coming soon!', 'info')">LinkedIn</a></li>
+                        <li><a href="#" onclick="showToast('TikTok link coming soon!', 'info')">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    &copy; 2026 SA Grade 12 Hub. All rights reserved. | Made with <span style="color:var(--primary);">&#10084;</span> for South African students.
+                </div>
+                <div class="footer-social">
+                    <a href="#" onclick="showToast('Twitter link coming soon!', 'info')" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" onclick="showToast('Instagram link coming soon!', 'info')" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" onclick="showToast('LinkedIn link coming soon!', 'info')" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" onclick="showToast('TikTok link coming soon!', 'info')" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" onclick="showToast('Facebook link coming soon!', 'info')" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-nav">
+        <div class="mobile-nav-inner">
+            <button class="mobile-nav-item active" onclick="navigateTo('home')" data-mobile-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="mobile-nav-item" onclick="navigateTo('papers')" data-mobile-page="papers">
+                <i class="fas fa-file-alt"></i>
+                <span>Papers</span>
+            </button>
+            <button class="mobile-nav-item menu-btn" onclick="openMobileMenu()">
+                <i class="fas fa-th-large"></i>
+            </button>
+            <button class="mobile-nav-item" onclick="navigateTo('guides')" data-mobile-page="guides">
+                <i class="fas fa-book-open"></i>
+                <span>Guides</span>
+            </button>
+            <button class="mobile-nav-item" onclick="navigateTo('tips')" data-mobile-page="tips">
+                <i class="fas fa-lightbulb"></i>
+                <span>Tips</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Welcome Back</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" id="loginEmail" placeholder="your@email.com" required>
+                        <div class="form-error" id="loginEmailError">Please enter a valid email</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="loginPassword" placeholder="Enter your password" required>
+                        <div class="form-error" id="loginPasswordError">Password is required</div>
+                    </div>
+                    <div class="modal-footer" style="padding:0;">
+                        <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                    </div>
+                </form>
+                <div class="modal-divider">or</div>
+                <button class="btn btn-outline btn-full" onclick="handleGoogleLogin()">
+                    <i class="fab fa-google"></i> Continue with Google
+                </button>
+                <div class="modal-switch">
+                    Don't have an account? <a onclick="switchToRegister()">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Create Account</h3>
+                <button class="modal-close" onclick="closeModal('registerModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" id="registerName" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" id="registerEmail" placeholder="your@email.com" required>
+                        <div class="form-error" id="registerEmailError">Please enter a valid email</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="registerPassword" placeholder="Create a password" required minlength="6">
+                        <div class="form-error" id="registerPasswordError">Password must be at least 6 characters</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-input" id="registerConfirm" placeholder="Confirm your password" required>
+                        <div class="form-error" id="registerConfirmError">Passwords do not match</div>
+                    </div>
+                    <div class="modal-footer" style="padding:0;">
+                        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                    </div>
+                </form>
+                <div class="modal-divider">or</div>
+                <button class="btn btn-outline btn-full" onclick="handleGoogleLogin()">
+                    <i class="fab fa-google"></i> Continue with Google
+                </button>
+                <div class="modal-switch">
+                    Already have an account? <a onclick="switchToLogin()">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="modal-overlay search-modal" id="searchModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Search Resources</h3>
+                <button class="modal-close" onclick="closeModal('searchModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by subject, year, topic, or paper..." oninput="performLiveSearch(this.value)">
+                </div>
+                <div class="search-filters">
+                    <button class="search-filter active" onclick="setSearchFilter('all', this)">All</button>
+                    <button class="search-filter" onclick="setSearchFilter('papers', this)">Papers</button>
+                    <button class="search-filter" onclick="setSearchFilter('guides', this)">Guides</button>
+                    <button class="search-filter" onclick="setSearchFilter('tips', this)">Tips</button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subject Detail Modal -->
+    <div class="modal-overlay subject-modal" id="subjectModal">
+        <div class="modal">
+            <div class="subject-modal-header" id="subjectModalHeader">
+                <div class="subject-modal-icon" id="subjectModalIcon"><i class="fas fa-calculator"></i></div>
+                <h2 class="subject-modal-title" id="subjectModalTitle">Mathematics</h2>
+                <p class="subject-modal-subtitle" id="subjectModalSubtitle">Pure Mathematics - NSC</p>
+            </div>
+            <div class="subject-tabs">
+                <button class="subject-tab active" onclick="switchSubjectTab('papers', this)">Past Papers</button>
+                <button class="subject-tab" onclick="switchSubjectTab('guides', this)">Study Guides</button>
+                <button class="subject-tab" onclick="switchSubjectTab('topics', this)">Topics</button>
+            </div>
+            <div class="subject-tab-content active" id="tab-papers">
+                <div class="resource-list" id="subjectPapersList"></div>
+            </div>
+            <div class="subject-tab-content" id="tab-guides">
+                <div class="resource-list" id="subjectGuidesList"></div>
+            </div>
+            <div class="subject-tab-content" id="tab-topics">
+                <div class="resource-list" id="subjectTopicsList"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // ===================== DATA =====================
+        const subjects = [
+            { id: 'math', name: 'Mathematics', icon: 'fa-calculator', count: '45 papers', topics: ['Algebra', 'Calculus', 'Geometry', 'Trigonometry', 'Statistics'], color: 'pink' },
+            { id: 'math-lit', name: 'Math Literacy', icon: 'fa-percentage', count: '32 papers', topics: ['Finance', 'Measurement', 'Data Handling', 'Maps & Plans'], color: 'blue' },
+            { id: 'english', name: 'English HL/FAL', icon: 'fa-book', count: '38 papers', topics: ['Comprehension', 'Literature', 'Writing', 'Language'], color: 'green' },
+            { id: 'afrikaans', name: 'Afrikaans', icon: 'fa-language', count: '35 papers', topics: ['Begrip', 'Letterkunde', 'Skryf', 'Taal'], color: 'orange' },
+            { id: 'zulu', name: 'isiZulu', icon: 'fa-comments', count: '28 papers', topics: ['Ukuqonda', 'Incwadi', 'Ukuhlola'], color: 'purple' },
+            { id: 'geography', name: 'Geography', icon: 'fa-globe-africa', count: '30 papers', topics: ['Climate', 'Geomorphology', 'Population', 'Economic'], color: 'teal' },
+            { id: 'history', name: 'History', icon: 'fa-landmark', count: '28 papers', topics: ['Cold War', 'Civil Rights', 'Apartheid', 'Independence'], color: 'pink' },
+            { id: 'life-sciences', name: 'Life Sciences', icon: 'fa-dna', count: '34 papers', topics: ['DNA', 'Evolution', 'Human Physiology', 'Ecology'], color: 'blue' },
+            { id: 'physical-sciences', name: 'Physical Sciences', icon: 'fa-atom', count: '36 papers', topics: ['Mechanics', 'Electrostatics', 'Organic Chemistry', 'Chemical Equilibrium'], color: 'green' },
+            { id: 'business', name: 'Business Studies', icon: 'fa-briefcase', count: '30 papers', topics: ['Business Environments', 'Ventures', 'Roles', 'Operations'], color: 'orange' },
+            { id: 'accounting', name: 'Accounting', icon: 'fa-file-invoice-dollar', count: '32 papers', topics: ['GAAP', 'Financial Statements', 'Budgeting', 'Inventory'], color: 'purple' },
+            { id: 'economics', name: 'Economics', icon: 'fa-chart-line', count: '28 papers', topics: ['Microeconomics', 'Macroeconomics', 'Growth', 'Development'], color: 'teal' },
+            { id: 'cat', name: 'CAT', icon: 'fa-laptop-code', count: '25 papers', topics: ['Word Processing', 'Spreadsheets', 'Databases', 'Web Design'], color: 'pink' },
+            { id: 'tourism', name: 'Tourism', icon: 'fa-plane', count: '22 papers', topics: ['Tourism Sectors', 'Map Work', 'Attractions', 'Sustainability'], color: 'blue' },
+            { id: 'consumer', name: 'Consumer Studies', icon: 'fa-shopping-bag', count: '20 papers', topics: ['Food & Nutrition', 'Textiles', 'Housing', 'Entrepreneurship'], color: 'green' },
+            { id: 'agriculture', name: 'Agricultural Sciences', icon: 'fa-seedling', count: '24 papers', topics: ['Animal Production', 'Plant Production', 'Soil Science', 'Agricultural Management'], color: 'orange' }
+        ];
+
+        const trendingItems = [
+            { title: 'NSC confirms 2026 exam timetable released', excerpt: 'The Department of Basic Education has released the final Matric examination timetable for 2026. Key dates and preparation tips inside.', badge: 'badge-news', badgeText: 'NEWS', time: '2h ago', readTime: '4 min read', image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600', subject: 'General' },
+            { title: 'Mathematics Paper 1: Complete Study Guide', excerpt: 'Comprehensive coverage of Algebra, Calculus, and Financial Maths with worked examples and exam strategies.', badge: 'badge-papers', badgeText: 'GUIDE', time: '5h ago', readTime: '12 min read', image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600', subject: 'Mathematics' },
+            { title: 'Physical Sciences: Organic Chemistry Masterclass', excerpt: 'Everything you need to know about organic chemistry reactions, mechanisms, and nomenclature for Paper 2.', badge: 'badge-tips', badgeText: 'TIPS', time: '1d ago', readTime: '8 min read', image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600', subject: 'Physical Sciences' },
+            { title: 'Life Sciences: Human Reproduction Summary', excerpt: 'Complete summary of the human reproduction system with diagrams, key terms, and common exam questions.', badge: 'badge-papers', badgeText: 'SUMMARY', time: '1d ago', readTime: '6 min read', image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600', subject: 'Life Sciences' },
+            { title: 'Geography: Climate & Weather Exam Prep', excerpt: 'Master mid-latitude cyclones, tropical cyclones, and local climates with this comprehensive study guide.', badge: 'badge-tips', badgeText: 'PREP', time: '2d ago', readTime: '10 min read', image: 'https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=600', subject: 'Geography' },
+            { title: 'Accounting: Cash Flow Statements Simplified', excerpt: 'Step-by-step guide to preparing cash flow statements with template and worked examples.', badge: 'badge-papers', badgeText: 'GUIDE', time: '3d ago', readTime: '7 min read', image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600', subject: 'Accounting' }
+        ];
+
+        const examTips = [
+            { number: '01', title: 'Start with the Easy Questions', description: 'Begin with questions you know well to build confidence and secure marks early. Leave difficult questions for later and return to them with a fresh perspective.' },
+            { number: '02', title: 'Read Every Question Twice', description: 'Many students lose marks by misreading questions. Take time to identify command words like "explain", "describe", "compare", and "evaluate" before answering.' },
+            { number: '03', title: 'Manage Your Time Wisely', description: 'Allocate time per question based on marks. A 10-mark question deserves more time than a 2-mark question. Always leave 10 minutes at the end to review.' },
+            { number: '04', title: 'Show All Working Steps', description: 'In Mathematics and Physical Sciences, marks are awarded for method even if your final answer is incorrect. Never skip steps — show your thinking clearly.' },
+            { number: '05', title: 'Use Past Papers for Practice', description: 'Past papers are the best predictor of exam format and difficulty. Time yourself, mark strictly using memos, and track your improvement over time.' },
+            { number: '06', title: 'Create Summary Notes', description: 'Condense each topic onto one page. Use colour coding, mnemonics, and diagrams. These quick-reference sheets are gold for last-minute revision.' }
+        ];
+
+        const papers = [];
+        const years = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
+        const provinces = ['National', 'IEB', 'Eastern Cape', 'Free State', 'Gauteng', 'KwaZulu-Natal', 'Limpopo', 'Mpumalanga', 'Northern Cape', 'North West', 'Western Cape'];
+        
+        subjects.forEach(subj => {
+            years.forEach(year => {
+                provinces.forEach(prov => {
+                    if (Math.random() > 0.7) {
+                        papers.push({
+                            id: `${subj.id}-${year}-${prov}-p1`,
+                            subject: subj.name,
+                            subjectId: subj.id,
+                            year: year,
+                            type: 'Paper 1',
+                            province: prov,
+                            title: `${subj.name} Paper 1 (${prov})`,
+                            url: `https://www.education.gov.za/Curriculum/NationalSeniorCertificate(NSC)Examinations.aspx`,
+                            memoUrl: `https://www.education.gov.za/Curriculum/NationalSeniorCertificate(NSC)Examinations.aspx`
+                        });
+                    }
+                    if (Math.random() > 0.7 && subj.id !== 'math-lit' && subj.id !== 'cat') {
+                        papers.push({
+                            id: `${subj.id}-${year}-${prov}-p2`,
+                            subject: subj.name,
+                            subjectId: subj.id,
+                            year: year,
+                            type: 'Paper 2',
+                            province: prov,
+                            title: `${subj.name} Paper 2 (${prov})`,
+                            url: `https://www.education.gov.za/Curriculum/NationalSeniorCertificate(NSC)Examinations.aspx`,
+                            memoUrl: `https://www.education.gov.za/Curriculum/NationalSeniorCertificate(NSC)Examinations.aspx`
+                        });
+                    }
+                });
+            });
+        });
+
+        const studyGuides = [
+            { subject: 'Mathematics', icon: 'fa-calculator', items: ['Algebra Formulas Sheet', 'Calculus Rules Summary', 'Geometry Theorems', 'Trigonometry Identities', 'Statistics Formulas'] },
+            { subject: 'Physical Sciences', icon: 'fa-atom', items: ['Physics Formula Sheet', 'Chemistry Periodic Table Guide', 'Organic Chemistry Reactions', 'Electrostatics Summary', 'Mechanics Equations'] },
+            { subject: 'Life Sciences', icon: 'fa-dna', items: ['DNA & RNA Summary', 'Human Systems Overview', 'Evolution Timeline', 'Ecology Concepts', 'Plant & Animal Cells'] },
+            { subject: 'Geography', icon: 'fa-globe-africa', items: ['Map Skills Guide', 'Climate Patterns', 'Geomorphology Processes', 'Population Studies', 'Economic Geography'] },
+            { subject: 'History', icon: 'fa-landmark', items: ['Cold War Timeline', 'Apartheid Era Summary', 'Civil Rights Movement', 'Decolonisation Guide', 'Essay Writing Tips'] },
+            { subject: 'Accounting', icon: 'fa-file-invoice-dollar', items: ['GAAP Principles', 'Financial Statements Guide', 'Budgeting Template', 'Inventory Methods', 'Ratio Analysis'] }
+        ];
+
+        // ===================== STATE =====================
+        let currentUser = JSON.parse(localStorage.getItem('grade12hub_user')) || null;
+        let bookmarks = JSON.parse(localStorage.getItem('grade12hub_bookmarks')) || [];
+        let searchFilter = 'all';
+
+        // ===================== INIT =====================
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTrending();
+            renderSubjects();
+            renderAllSubjects();
+            renderTips();
+            renderAllTips();
+            renderPapers();
+            renderGuides();
+            updateAuthUI();
+            startCountdown();
+            populateFilters();
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+            });
+
+            // Close dropdowns on outside click
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.user-menu')) {
+                    document.getElementById('userDropdown')?.classList.remove('show');
+                }
+            });
+        });
+
+        // ===================== NAVIGATION =====================
+        function navigateTo(page) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-item').forEach(l => l.classList.remove('active'));
+            
+            const target = document.getElementById(`page-${page}`);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            
+            document.querySelectorAll(`[data-page="${page}"]`).forEach(el => el.classList.add('active'));
+            document.querySelectorAll(`[data-mobile-page="${page}"]`).forEach(el => el.classList.add('active'));
+            
+            // Update page title
+            const titles = {
+                home: 'SA Grade 12 Hub - Premium Study Platform',
+                subjects: 'All Subjects | SA Grade 12 Hub',
+                papers: 'Past Papers | SA Grade 12 Hub',
+                guides: 'Study Guides | SA Grade 12 Hub',
+                tips: 'Exam Tips | SA Grade 12 Hub',
+                about: 'About Us | SA Grade 12 Hub',
+                contact: 'Contact Us | SA Grade 12 Hub',
+                profile: 'My Profile | SA Grade 12 Hub',
+                bookmarks: 'Saved Resources | SA Grade 12 Hub',
+                progress: 'My Progress | SA Grade 12 Hub'
+            };
+            document.title = titles[page] || 'SA Grade 12 Hub';
+        }
+
+        // ===================== RENDER FUNCTIONS =====================
+        function renderTrending() {
+            const grid = document.getElementById('trendingGrid');
+            grid.innerHTML = trendingItems.map((item, i) => `
+                <div class="trending-card animate-fade-in-up delay-${(i % 5) + 1}" onclick="showToast('Opening: ${item.title}', 'success')">
+                    <div class="trending-card-image">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <span class="trending-card-badge ${item.badge}">${item.badgeText}</span>
+                    </div>
+                    <div class="trending-card-content">
+                        <div class="trending-card-meta">
+                            <span class="trending-card-time"><i class="far fa-clock"></i> ${item.time}</span>
+                        </div>
+                        <h3 class="trending-card-title">${item.title}</h3>
+                        <p class="trending-card-excerpt">${item.excerpt}</p>
+                        <div class="trending-card-footer">
+                            <span class="trending-card-readtime"><i class="far fa-clock"></i> ${item.readTime}</span>
+                            <div class="trending-card-actions">
+                                <button class="trending-card-action" onclick="event.stopPropagation(); toggleBookmark('${item.title}')" title="Bookmark">
+                                    <i class="${bookmarks.includes(item.title) ? 'fas' : 'far'} fa-bookmark"></i>
+                                </button>
+                                <button class="trending-card-action" onclick="event.stopPropagation(); shareItem('${item.title}')" title="Share">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSubjects() {
+            const grid = document.getElementById('subjectsGrid');
+            grid.innerHTML = subjects.slice(0, 8).map((subj, i) => `
+                <div class="subject-card animate-fade-in-up delay-${(i % 5) + 1}" onclick="openSubjectModal('${subj.id}')">
+                    <div class="subject-icon"><i class="fas ${subj.icon}"></i></div>
+                    <div class="subject-name">${subj.name}</div>
+                    <div class="subject-count">${subj.count}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderAllSubjects() {
+            const grid = document.getElementById('allSubjectsGrid');
+            grid.innerHTML = subjects.map((subj, i) => `
+                <div class="subject-card animate-fade-in-up delay-${(i % 5) + 1}" onclick="openSubjectModal('${subj.id}')">
+                    <div class="subject-icon"><i class="fas ${subj.icon}"></i></div>
+                    <div class="subject-name">${subj.name}</div>
+                    <div class="subject-count">${subj.count}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderTips() {
+            const grid = document.getElementById('tipsGrid');
+            grid.innerHTML = examTips.slice(0, 4).map((tip, i) => `
+                <div class="tip-card animate-fade-in-up delay-${(i % 5) + 1}">
+                    <div class="tip-number">${tip.number}</div>
+                    <div class="tip-content">
+                        <h3>${tip.title}</h3>
+                        <p>${tip.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAllTips() {
+            const grid = document.getElementById('allTipsGrid');
+            grid.innerHTML = examTips.map((tip, i) => `
+                <div class="tip-card animate-fade-in-up delay-${(i % 5) + 1}">
+                    <div class="tip-number">${tip.number}</div>
+                    <div class="tip-content">
+                        <h3>${tip.title}</h3>
+                        <p>${tip.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPapers(filtered = papers) {
+            const grid = document.getElementById('papersGrid');
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;"><i class="fas fa-search" style="font-size:48px;color:var(--gray-light);margin-bottom:16px;"></i><h3 style="color:var(--secondary);margin-bottom:8px;">No papers found</h3><p style="color:var(--gray);">Try adjusting your filters.</p></div>`;
+                return;
+            }
+            grid.innerHTML = filtered.slice(0, 24).map((paper, i) => `
+                <div class="paper-card animate-fade-in-up delay-${(i % 5) + 1}">
+                    <div class="paper-card-header">
+                        <span class="paper-card-subject">${paper.subject}</span>
+                        <span class="paper-card-year">${paper.year}</span>
+                    </div>
+                    <h3 class="paper-card-title">${paper.title}</h3>
+                    <div class="paper-card-meta">
+                        <span class="paper-card-meta-item"><i class="fas fa-file-alt"></i> ${paper.type}</span>
+                        <span class="paper-card-meta-item"><i class="fas fa-map-marker-alt"></i> ${paper.province}</span>
+                    </div>
+                    <div class="paper-card-actions">
+                        <button class="btn btn-primary btn-sm" onclick="window.open('${paper.url}', '_blank')">
+                            <i class="fas fa-download"></i> Paper
+                        </button>
+                        <button class="btn btn-outline btn-sm" onclick="window.open('${paper.memoUrl}', '_blank')">
+                            <i class="fas fa-key"></i> Memo
+                        </button>
+                        <button class="btn btn-ghost btn-sm" onclick="toggleBookmark('${paper.title}')" title="Bookmark">
+                            <i class="${bookmarks.includes(paper.title) ? 'fas' : 'far'} fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderGuides() {
+            const grid = document.getElementById('guidesGrid');
+            grid.innerHTML = studyGuides.map((guide, i) => `
+                <div class="guide-category animate-fade-in-up delay-${(i % 5) + 1}">
+                    <div class="guide-category-header">
+                        <i class="fas ${guide.icon}"></i>
+                        <h3>${guide.subject}</h3>
+                    </div>
+                    <div class="guide-category-list">
+                        ${guide.items.map(item => `
+                            <a class="guide-category-item" onclick="showToast('Opening: ${item}', 'success')">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>${item}</span>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateFilters() {
+            const subjectSelect = document.getElementById('paperFilterSubject');
+            subjects.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.name;
+                opt.textContent = s.name;
+                subjectSelect.appendChild(opt);
+            });
+
+            const yearSelect = document.getElementById('paperFilterYear');
+            years.forEach(y => {
+                const opt = document.createElement('option');
+                opt.value = y;
+                opt.textContent = y;
+                yearSelect.appendChild(opt);
+            });
+        }
+
+        // ===================== FILTERS =====================
+        function filterPapers() {
+            const subject = document.getElementById('paperFilterSubject').value;
+            const year = document.getElementById('paperFilterYear').value;
+            const type = document.getElementById('paperFilterType').value;
+            const province = document.getElementById('paperFilterProvince').value;
+
+            const filtered = papers.filter(p => {
+                return (!subject || p.subject === subject) &&
+                       (!year || p.year == year) &&
+                       (!type || p.type === type) &&
+                       (!province || p.province === province);
+            });
+            renderPapers(filtered);
+        }
+
+        // ===================== SEARCH =====================
+        function openSearchModal() {
+            document.getElementById('searchModal').classList.add('active');
+            document.getElementById('searchInput').focus();
+        }
+
+        function performSearch(query) {
+            if (!query.trim()) return;
+            openSearchModal();
+            document.getElementById('searchInput').value = query;
+            performLiveSearch(query);
+        }
+
+        function performLiveSearch(query) {
+            const resultsDiv = document.getElementById('searchResults');
+            if (!query.trim()) {
+                resultsDiv.innerHTML = '<p style="text-align:center;color:var(--gray);padding:20px;">Start typing to search...</p>';
+                return;
+            }
+
+            const q = query.toLowerCase();
+            let results = [];
+
+            if (searchFilter === 'all' || searchFilter === 'papers') {
+                results.push(...papers.filter(p => 
+                    p.title.toLowerCase().includes(q) || 
+                    p.subject.toLowerCase().includes(q) ||
+                    p.province.toLowerCase().includes(q)
+                ).map(p => ({...p, category: 'Paper'})));
+            }
+
+            if (searchFilter === 'all' || searchFilter === 'guides') {
+                studyGuides.forEach(g => {
+                    g.items.forEach(item => {
+                        if (item.toLowerCase().includes(q) || g.subject.toLowerCase().includes(q)) {
+                            results.push({
+                                title: item,
+                                subject: g.subject,
+                                category: 'Guide',
+                                icon: 'fa-book-open'
+                            });
+                        }
+                    });
+                });
+            }
+
+            if (searchFilter === 'all' || searchFilter === 'tips') {
+                results.push(...examTips.filter(t => 
+                    t.title.toLowerCase().includes(q) || 
+                    t.description.toLowerCase().includes(q)
+                ).map(t => ({...t, category: 'Tip', icon: 'fa-lightbulb'})));
+            }
+
+            if (results.length === 0) {
+                resultsDiv.innerHTML = '<p style="text-align:center;color:var(--gray);padding:20px;">No results found. Try different keywords.</p>';
+                return;
+            }
+
+            resultsDiv.innerHTML = results.slice(0, 10).map(r => `
+                <div class="search-result-item" onclick="handleSearchResult('${r.category}', '${r.title}')">
+                    <div class="search-result-icon"><i class="fas ${r.icon || 'fa-file-alt'}"></i></div>
+                    <div class="search-result-info">
+                        <h4>${r.title}</h4>
+                        <p>${r.subject || 'General'} ${r.year ? '- ' + r.year : ''}</p>
+                    </div>
+                    <span class="search-result-badge" style="background:var(--primary-light);color:var(--primary);">${r.category}</span>
+                </div>
+            `).join('');
+        }
+
+        function setSearchFilter(filter, btn) {
+            searchFilter = filter;
+            document.querySelectorAll('.search-filter').forEach(f => f.classList.remove('active'));
+            btn.classList.add('active');
+            const query = document.getElementById('searchInput').value;
+            if (query) performLiveSearch(query);
+        }
+
+        function handleSearchResult(category, title) {
+            if (category === 'Paper') {
+                const paper = papers.find(p => p.title === title);
+                if (paper) window.open(paper.url, '_blank');
+            } else {
+                showToast(`Opening: ${title}`, 'success');
+            }
+            closeModal('searchModal');
+        }
+
+        // ===================== SUBJECT MODAL =====================
+        function openSubjectModal(subjectId) {
+            const subj = subjects.find(s => s.id === subjectId);
+            if (!subj) return;
+
+            document.getElementById('subjectModalIcon').innerHTML = `<i class="fas ${subj.icon}"></i>`;
+            document.getElementById('subjectModalTitle').textContent = subj.name;
+            document.getElementById('subjectModalSubtitle').textContent = `${subj.count} - NSC Curriculum`;
+
+            const subjPapers = papers.filter(p => p.subjectId === subjectId).slice(0, 6);
+            document.getElementById('subjectPapersList').innerHTML = subjPapers.map(p => `
+                <div class="resource-item" onclick="window.open('${p.url}', '_blank')">
+                    <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="resource-info">
+                        <h4>${p.title}</h4>
+                        <p>${p.year} | ${p.province} | ${p.type}</p>
+                    </div>
+                    <button class="resource-action">View</button>
+                </div>
+            `).join('') || '<p style="color:var(--gray);padding:20px;text-align:center;">No papers available for this subject yet.</p>';
+
+            const guide = studyGuides.find(g => g.subject === subj.name);
+            document.getElementById('subjectGuidesList').innerHTML = guide ? guide.items.map(item => `
+                <div class="resource-item" onclick="showToast('Opening: ${item}', 'success')">
+                    <div class="resource-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="resource-info">
+                        <h4>${item}</h4>
+                        <p>${subj.name} Study Guide</p>
+                    </div>
+                    <button class="resource-action">View</button>
+                </div>
+            `).join('') : '<p style="color:var(--gray);padding:20px;text-align:center;">No guides available yet.</p>';
+
+            document.getElementById('subjectTopicsList').innerHTML = subj.topics.map(topic => `
+                <div class="resource-item" onclick="showToast('Topic: ${topic}', 'info')">
+                    <div class="resource-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="resource-info">
+                        <h4>${topic}</h4>
+                        <p>Key concepts and exam focus areas</p>
+                    </div>
+                    <button class="resource-action">Study</button>
+                </div>
+            `).join('');
+
+            document.getElementById('subjectModal').classList.add('active');
+        }
+
+        function switchSubjectTab(tab, btn) {
+            document.querySelectorAll('.subject-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.subject-tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        // ===================== AUTH =====================
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function switchToRegister() {
+            closeModal('loginModal');
+            document.getElementById('registerModal').classList.add('active');
+        }
+
+        function switchToLogin() {
+            closeModal('registerModal');
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email.includes('@')) {
+                document.getElementById('loginEmailError').classList.add('show');
+                return;
+            }
+            document.getElementById('loginEmailError').classList.remove('show');
+
+            const user = { name: email.split('@')[0], email: email };
+            localStorage.setItem('grade12hub_user', JSON.stringify(user));
+            currentUser = user;
+            updateAuthUI();
+            closeModal('loginModal');
+            showToast('Welcome back! You are now signed in.', 'success');
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirm = document.getElementById('registerConfirm').value;
+
+            if (password !== confirm) {
+                document.getElementById('registerConfirmError').classList.add('show');
+                return;
+            }
+            document.getElementById('registerConfirmError').classList.remove('show');
+
+            const user = { name: name, email: email };
+            localStorage.setItem('grade12hub_user', JSON.stringify(user));
+            currentUser = user;
+            updateAuthUI();
+            closeModal('registerModal');
+            showToast('Account created successfully! Welcome to Grade 12 Hub.', 'success');
+        }
+
+        function handleGoogleLogin() {
+            const user = { name: 'Google User', email: 'user@gmail.com' };
+            localStorage.setItem('grade12hub_user', JSON.stringify(user));
+            currentUser = user;
+            updateAuthUI();
+            closeModal('loginModal');
+            closeModal('registerModal');
+            showToast('Signed in with Google successfully!', 'success');
+        }
+
+        function logout() {
+            localStorage.removeItem('grade12hub_user');
+            currentUser = null;
+            updateAuthUI();
+            navigateTo('home');
+            showToast('You have been signed out.', 'info');
+        }
+
+        function updateAuthUI() {
+            const authButtons = document.getElementById('authButtons');
+            const userMenu = document.getElementById('userMenu');
+            
+            if (currentUser) {
+                authButtons.style.display = 'none';
+                userMenu.style.display = 'block';
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+                
+                const profileName = document.getElementById('profileName');
+                const profileEmail = document.getElementById('profileEmail');
+                if (profileName) profileName.textContent = currentUser.name;
+                if (profileEmail) profileEmail.textContent = currentUser.email;
+            } else {
+                authButtons.style.display = 'block';
+                userMenu.style.display = 'none';
+            }
+        }
+
+        function toggleUserDropdown() {
+            document.getElementById('userDropdown').classList.toggle('show');
+        }
+
+        // ===================== BOOKMARKS =====================
+        function toggleBookmark(title) {
+            const idx = bookmarks.indexOf(title);
+            if (idx > -1) {
+                bookmarks.splice(idx, 1);
+                showToast('Removed from saved resources', 'info');
+            } else {
+                bookmarks.push(title);
+                showToast('Saved to your resources!', 'success');
+            }
+            localStorage.setItem('grade12hub_bookmarks', JSON.stringify(bookmarks));
+            renderTrending();
+            renderPapers();
+        }
+
+        // ===================== SHARE =====================
+        function shareItem(title) {
+            const url = window.location.href;
+            const text = `Check out this Grade 12 resource: ${title}`;
+            
+            if (navigator.share) {
+                navigator.share({ title: title, text: text, url: url });
+            } else {
+                showToast('Link copied to clipboard!', 'success');
+            }
+        }
+
+        // ===================== COUNTDOWN =====================
+        function startCountdown() {
+            const examDate = new Date('2026-10-20T09:00:00');
+            
+            function update() {
+                const now = new Date();
+                const diff = examDate - now;
+                
+                if (diff <= 0) {
+                    document.getElementById('countdown-days').textContent = '00';
+                    document.getElementById('countdown-hours').textContent = '00';
+                    document.getElementById('countdown-minutes').textContent = '00';
+                    document.getElementById('countdown-seconds').textContent = '00';
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
+                document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+            
+            update();
+            setInterval(update, 1000);
+        }
+
+        // ===================== MOBILE MENU =====================
+        function openMobileMenu() {
+            document.getElementById('mobileMenuOverlay').classList.add('active');
+            document.getElementById('mobileMenu').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenuOverlay').classList.remove('active');
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ===================== MODALS =====================
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close modals on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) overlay.classList.remove('active');
+            });
+        });
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+                closeMobileMenu();
+            }
+        });
+
+        // ===================== TOAST =====================
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            
+            const icons = {
+                success: 'fa-check-circle',
+                info: 'fa-info-circle',
+                warning: 'fa-exclamation-triangle'
+            };
+            
+            toast.innerHTML = `
+                <div class="toast-icon"><i class="fas ${icons[type] || icons.success}"></i></div>
+                <div class="toast-content">
+                    <h4>${type === 'success' ? 'Success' : type === 'info' ? 'Info' : 'Notice'}</h4>
+                    <p>${message}</p>
+                </div>
+            `;
+            
+            container.appendChild(toast);
+            
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ===================== CONTACT =====================
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('Thank you! Your message has been sent.', 'success');
+            e.target.reset();
+        }
+
+        // ===================== TOOLS =====================
+        function openFlashcards() {
+            showToast('Flashcards feature coming soon! Check back for updates.', 'info');
+        }
+
+        function openTimer() {
+            showToast('Exam Timer feature coming soon! Check back for updates.', 'info');
+        }
+
+        // ===================== SEO & ANALYTICS =====================
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            "name": "SA Grade 12 Hub",
+            "description": "South Africa's #1 Grade 12 study platform with past papers, study guides, and exam tips.",
+            "url": "https://sagrade12hub.co.za",
+            "logo": "https://sagrade12hub.co.za/logo.png",
+            "sameAs": [
+                "https://twitter.com/sagrade12hub",
+                "https://facebook.com/sagrade12hub",
+                "https://instagram.com/sagrade12hub"
+            ],
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "ZA"
+            }
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>
